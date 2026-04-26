@@ -48,6 +48,35 @@ npm run build
 - `src/stores/progress.js`: store Pinia do progresso.
 - `src/lib/progressStorage.js`: persistencia local versionada.
 - `src/data/gameContent.js`: fases, skills e instrucoes do jogo.
+
+## Docker
+
+### Build da imagem
+
+```bash
+docker build -t skills-codex .
+```
+
+### Run local
+
+```bash
+docker run -d -p 8080:80 --name skills-codex skills-codex
+```
+
+Acesse em: http://localhost:8080
+
+### Deploy no EasyPanel
+
+1. Build da imagem e push para registry:
+   ```bash
+   docker build -t registry.seu-dominio.com/skills-codex .
+   docker push registry.seu-dominio.com/skills-codex
+   ```
+
+2. No EasyPanel:
+   - Container image: `registry.seu-dominio.com/skills-codex`
+   - Port: `80`
+   - Health check: `/health`
 - `readme.md`: documentacao principal do projeto.
 - `skills-workflow-guide.html`: mapa interativo para aprender o fluxo.
 - `PRD.md`: intencao de produto da entrega atual.

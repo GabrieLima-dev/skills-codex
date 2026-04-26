@@ -1,0 +1,44 @@
+# filepath: .dockerignore
+# Dependencies
+node_modules
+npm-debug.log*
+
+# Build outputs
+dist
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Git
+.git
+.gitignore
+
+# Docs (não necessários no build)
+*.md
+!README.md
+docs/
+skills/
+
+# Scripts e testes
+scripts/
+*.mjs
+
+# Configs de desenvolvimento
+.env
+.env.*
+vite.config.js
+
+# Imagens e assets externos
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+assets/
+
+# Outros
+.DS_Store
+Thumbs.db

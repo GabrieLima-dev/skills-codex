@@ -57,7 +57,8 @@ Transformar a documentacao do projeto `Skills` em uma experiencia didatica e int
 4. `Spec.md`
 5. `package.json`
 6. `index.html`
-7. `src/`
+7. `game.html`
+8. `src/`
 
 ## Requisitos Funcionais
 
@@ -68,6 +69,9 @@ Transformar a documentacao do projeto `Skills` em uma experiencia didatica e int
 5. O guia deve mostrar caminhos comuns: entender contexto, implementar mudanca, mudar frontend, validar qualidade e publicar.
 6. O README deve explicar o projeto, estrutura, stack, como abrir e como validar.
 7. O progresso deve persistir apos recarregar a pagina.
+8. A URL raiz deve abrir o guia `skills-workflow-guide.html`.
+9. O botao `Abrir jogo` do guia deve abrir o game em `game.html`.
+10. O botao `Docs` dentro do game deve retornar para a documentacao estatica.
 
 ## Requisitos Nao Funcionais
 
@@ -85,8 +89,9 @@ Transformar a documentacao do projeto `Skills` em uma experiencia didatica e int
 3. Cada skill listada tem objetivo, acionamento, retorno esperado e formato de retorno.
 4. Os gates principais estao explicados em linguagem acessivel.
 5. O app roda com `npm run dev` e gera build com `npm run build`.
-6. Busca textual por termos legados de projeto nao encontra referencias ativas nos arquivos alterados.
-7. `npm test` valida dados basicos do jogo e normalizacao do progresso.
+6. O build de producao inclui `skills-workflow-guide.html` e `game.html` para evitar 404 nos links de guia e jogo.
+7. Busca textual por termos legados de projeto nao encontra referencias ativas nos arquivos alterados.
+8. `npm test` valida dados basicos do jogo, normalizacao do progresso e existencia do link de docs.
 
 ## Riscos e Duvidas
 

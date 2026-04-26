@@ -9,8 +9,8 @@ O objetivo e mostrar, de forma clara e pratica, como cada skill funciona, quando
 - Frontend: Vue 3, Vite, Pinia, HTML, CSS e JavaScript.
 - Backend: nao aplicavel nesta entrega.
 - Docs: este `readme.md`.
-- App principal do jogo: `index.html`.
-- Guia visual legado/apoio: `skills-workflow-guide.html`.
+- Home/documentacao visual: `skills-workflow-guide.html`.
+- App principal do jogo: `game.html`.
 
 O projeto agora possui uma experiencia de jogo lateral para ensinar o fluxo das Skills e salva progresso no cache local do navegador.
 
@@ -40,6 +40,8 @@ Gere build de producao:
 npm run build
 ```
 
+O build deve gerar `dist/index.html`, `dist/skills-workflow-guide.html` e `dist/game.html`. Ao abrir `/`, o usuario deve ser levado para o guia; o botao `Abrir jogo` abre `game.html`.
+
 ## Estrutura
 
 - `AGENTS.md`: regras operacionais que a agente deve seguir.
@@ -48,6 +50,10 @@ npm run build
 - `src/stores/progress.js`: store Pinia do progresso.
 - `src/lib/progressStorage.js`: persistencia local versionada.
 - `src/data/gameContent.js`: fases, skills e instrucoes do jogo.
+- `index.html`: entrada raiz que direciona para o guia.
+- `game.html`: entrada Vite do jogo.
+- `skills-workflow-guide.html`: pagina estatica inicial aberta ao acessar o site.
+- `vite.config.js`: build multipagina para publicar o jogo e a pagina de docs.
 
 ## Docker
 
@@ -81,7 +87,7 @@ Acesse em: http://localhost:8080
 
 O `Dockerfile` nao define `HEALTHCHECK` interno. O container deve subir o Nginx diretamente na porta `80`, deixando a validacao de saude sob responsabilidade do EasyPanel/proxy.
 - `readme.md`: documentacao principal do projeto.
-- `skills-workflow-guide.html`: mapa interativo para aprender o fluxo.
+- `skills-workflow-guide.html`: mapa interativo inicial para aprender o fluxo.
 - `PRD.md`: intencao de produto da entrega atual.
 - `Spec.md`: especificacao tecnica da entrega atual.
 

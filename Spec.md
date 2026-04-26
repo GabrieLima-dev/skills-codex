@@ -7,7 +7,7 @@ Esta especificacao implementa o `PRD.md` da documentacao interativa do projeto `
 ## Escopo Tecnico
 
 1. Atualizar `readme.md` como documentacao principal.
-2. Criar app Vue/Vite em `index.html` e `src/`.
+2. Criar app Vue/Vite em `game.html` e `src/`.
 3. Remover referencias legadas de outro projeto nos arquivos alterados.
 4. Manter `skills-workflow-guide.html` como apoio e incluir entrada para o jogo.
 5. Salvar progresso do usuario em `localStorage`.
@@ -29,10 +29,10 @@ Por que:
 
 O que alterar:
 - Manter como pagina principal/apoio ja existente.
-- Adicionar link claro para abrir o jogo em Vue.
+- Adicionar link claro para abrir o jogo em Vue via `game.html`.
 
 Por que:
-- A pagina atual continua util como documentacao visual, enquanto o jogo vira experiencia dedicada.
+- A pagina atual passa a ser a primeira experiencia do site, enquanto o jogo vira experiencia dedicada.
 
 ### `package.json`
 
@@ -43,13 +43,30 @@ O que alterar:
 Por que:
 - O projeto passa a ter app frontend empacotado.
 
+### `vite.config.js`
+
+O que alterar:
+- Publicar `index.html` e `skills-workflow-guide.html` no build de producao.
+- Publicar `game.html` como entrada do jogo Vue.
+
+Por que:
+- A home precisa abrir o guia, o botao `Abrir jogo` precisa abrir o game e o botao `Docs` precisa voltar para a documentacao sem 404 no Nginx/EasyPanel.
+
 ### `index.html`
+
+O que alterar:
+- Direcionar a entrada raiz para `skills-workflow-guide.html`.
+
+Por que:
+- Ao abrir a URL publica, a primeira pagina deve ser o guia.
+
+### `game.html`
 
 O que alterar:
 - Criar ponto de entrada do app Vite.
 
 Por que:
-- O jogo passa a ser a tela principal do app Vue.
+- O jogo deve abrir somente a partir do botao do guia.
 
 ### `src/`
 
@@ -105,26 +122,32 @@ Antes:
 - Guia estatico/interativo em arquivo unico, sem persistencia de progresso.
 
 Depois:
-- App Vue com mapa lateral, instrucoes sempre visiveis, fases desbloqueadas e progresso salvo no navegador.
+- Guia estatico como home do site e app Vue em `game.html` com mapa lateral, instrucoes sempre visiveis, fases desbloqueadas e progresso salvo no navegador.
 
 ## Cenarios de Validacao
 
 1. Rodar `npm test`.
 2. Rodar `npm run build`.
-3. Rodar `npm run dev`.
-4. Clicar nas fases e verificar atualizacao da agente e da missao.
-5. Concluir fase, recarregar pagina e confirmar progresso persistido.
-6. Usar `Reiniciar` e confirmar limpeza do progresso.
-7. Verificar responsividade por estrutura CSS.
-8. Procurar termos legados nos arquivos alterados.
+3. Confirmar que `dist/skills-workflow-guide.html` e `dist/game.html` foram gerados.
+4. Rodar `npm run dev`.
+5. Abrir `/` e confirmar que a pagina inicial e o guia.
+6. Clicar em `Abrir jogo` e confirmar que `game.html` abre sem 404.
+7. Clicar em `Docs` no game e confirmar que a pagina estatica abre sem 404.
+8. Clicar nas fases e verificar atualizacao da agente e da missao.
+9. Concluir fase, recarregar pagina e confirmar progresso persistido.
+10. Usar `Reiniciar` e confirmar limpeza do progresso.
+11. Verificar responsividade por estrutura CSS.
+12. Procurar termos legados nos arquivos alterados.
 
 ## Criterios de Pronto
 
 1. `readme.md` explica o projeto `Skills` e como validar.
 2. App Vue possui interacao funcional e persistencia local.
-3. Nao existem referencias ativas a outro projeto nos arquivos alterados.
-4. Validacoes locais planejadas foram executadas ou justificadas.
-5. A entrega inclui roteiro `como testar`.
+3. A URL raiz abre o guia e o botao `Abrir jogo` abre `game.html`.
+4. Link `Docs` abre `skills-workflow-guide.html` no build de producao.
+5. Nao existem referencias ativas a outro projeto nos arquivos alterados.
+6. Validacoes locais planejadas foram executadas ou justificadas.
+7. A entrega inclui roteiro `como testar`.
 
 ## Estrategia TDD/Validacao
 

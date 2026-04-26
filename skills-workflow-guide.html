@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Skills | Jornada Interativa</title>
+  <title>Skills | Home</title>
   <script>
     (() => {
       const theme = localStorage.getItem("skills-ui-theme:v1") === "dark" ? "dark" : "light";
@@ -13,39 +13,35 @@
   <style>
     :root {
       color-scheme: light;
-      --bg: #f4f5f0;
-      --surface: #ffffff;
-      --surface-2: #eef1f4;
-      --surface-3: #f7f0e3;
-      --surface-strong: #111827;
-      --text: #151a22;
-      --muted: #66727e;
-      --line: #d8dee4;
-      --blue: #3b73e7;
-      --green: #12815f;
-      --amber: #c57a17;
-      --rose: #c55379;
-      --focus: #111827;
-      --shadow: 0 20px 50px rgba(18, 25, 33, 0.11);
+      --bg: #f5f3ed;
+      --surface: #fffefa;
+      --surface-soft: #eff2f4;
+      --surface-strong: #151922;
+      --text: #151922;
+      --muted: #66717d;
+      --line: #d8dde3;
+      --blue: #3c72e6;
+      --green: #14815f;
+      --amber: #c77716;
+      --rose: #c65379;
+      --shadow: 0 22px 56px rgba(18, 25, 33, 0.12);
       --radius: 8px;
     }
 
     :root[data-theme="dark"] {
       color-scheme: dark;
-      --bg: #0f1117;
+      --bg: #0e1117;
       --surface: #161a22;
-      --surface-2: #1d2430;
-      --surface-3: #25211a;
-      --surface-strong: #f7f8fb;
-      --text: #f4f6fb;
-      --muted: #aab4c0;
-      --line: #2d3645;
+      --surface-soft: #1e2530;
+      --surface-strong: #f6f8fb;
+      --text: #f6f8fb;
+      --muted: #aeb8c4;
+      --line: #303948;
       --blue: #7aa7ff;
-      --green: #6ed4ad;
+      --green: #6fd3ae;
       --amber: #ffcc73;
       --rose: #ff91b0;
-      --focus: #ffffff;
-      --shadow: 0 22px 55px rgba(0, 0, 0, 0.32);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
     }
 
     * { box-sizing: border-box; }
@@ -57,17 +53,19 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background:
-        radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--blue) 12%, transparent), transparent 34%),
-        linear-gradient(90deg, color-mix(in srgb, var(--blue) 5%, transparent) 1px, transparent 1px),
-        linear-gradient(0deg, color-mix(in srgb, var(--green) 5%, transparent) 1px, transparent 1px),
-        var(--bg);
-      background-size: auto, 36px 36px, 36px 36px, auto;
       color: var(--text);
+      background:
+        radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--blue) 16%, transparent), transparent 30%),
+        radial-gradient(circle at 90% 8%, color-mix(in srgb, var(--green) 12%, transparent), transparent 28%),
+        linear-gradient(90deg, color-mix(in srgb, var(--blue) 5%, transparent) 1px, transparent 1px),
+        linear-gradient(0deg, color-mix(in srgb, var(--green) 4%, transparent) 1px, transparent 1px),
+        var(--bg);
+      background-size: auto, auto, 38px 38px, 38px 38px, auto;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       letter-spacing: 0;
     }
 
+    body,
     button,
     input {
       font: inherit;
@@ -78,151 +76,226 @@
     }
 
     button:focus-visible,
+    a:focus-visible,
     input:focus-visible {
-      outline: 3px solid color-mix(in srgb, var(--blue) 55%, transparent);
-      outline-offset: 2px;
+      outline: 3px solid color-mix(in srgb, var(--blue) 48%, transparent);
+      outline-offset: 3px;
+    }
+
+    a {
+      color: inherit;
     }
 
     .shell {
-      width: min(1180px, calc(100vw - 32px));
+      width: min(1220px, calc(100vw - 32px));
       margin: 0 auto;
     }
 
-    header {
+    .layout {
+      display: grid;
+      grid-template-columns: 88px minmax(0, 1fr);
+      gap: 18px;
+      min-height: 100vh;
+      padding: 16px 0 54px;
+    }
+
+    .side-rail {
       position: sticky;
-      top: 0;
-      z-index: 20;
-      border-bottom: 1px solid var(--line);
-      background: color-mix(in srgb, var(--bg) 92%, transparent);
-      backdrop-filter: blur(14px);
-    }
-
-    .topbar {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      top: 16px;
+      height: calc(100vh - 32px);
+      display: grid;
+      align-content: space-between;
+      justify-items: center;
       gap: 16px;
-      padding: 10px 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--surface) 86%, transparent), color-mix(in srgb, var(--surface-soft) 82%, transparent)),
+        var(--surface);
+      box-shadow: var(--shadow);
+      padding: 12px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .rail-brand {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      text-decoration: none;
+    }
+
+    .rail-brand svg,
+    .rail-link svg,
+    .theme-button svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .rail-nav {
+      display: grid;
+      gap: 10px;
+    }
+
+    .rail-link,
+    .theme-button {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--surface) 86%, transparent);
+      color: var(--text);
+      text-decoration: none;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .rail-link:hover,
+    .rail-link.active,
+    .theme-button:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--blue) 62%, var(--line));
+      background: color-mix(in srgb, var(--blue) 12%, var(--surface));
+    }
+
+    main {
+      display: grid;
+      gap: 18px;
       min-width: 0;
     }
 
-    .mark {
-      width: 42px;
-      height: 42px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--surface), var(--surface-2));
-      box-shadow: 0 10px 22px rgba(20, 29, 38, 0.12);
-      flex: 0 0 auto;
-    }
-
-    .mark svg {
-      width: 28px;
-      height: 28px;
-    }
-
-    .brand strong {
-      display: block;
-      font-size: 1rem;
-      line-height: 1.1;
-    }
-
-    .brand span {
-      display: block;
-      color: var(--muted);
-      font-size: 0.82rem;
-      margin-top: 3px;
-    }
-
-    .nav {
+    .topbar {
+      min-height: 70px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--surface) 90%, transparent);
+      box-shadow: var(--shadow);
+      padding: 12px 14px;
+      backdrop-filter: blur(14px);
     }
 
-    .nav button,
-    .ghost-button {
-      min-height: 38px;
+    .brand-copy strong,
+    .brand-copy span {
+      display: block;
+    }
+
+    .brand-copy strong {
+      font-size: 1rem;
+    }
+
+    .brand-copy span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--surface);
       color: var(--text);
-      padding: 8px 11px;
-      font-size: 0.88rem;
-      font-weight: 650;
-      transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+      padding: 9px 13px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 760;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
 
-    .theme-icon-button {
-      width: 40px;
-      min-width: 40px;
-      padding: 8px;
-      font-size: 1.04rem;
-    }
-
-    .nav button:hover,
-    .nav button.active,
-    .ghost-button:hover {
-      border-color: color-mix(in srgb, var(--blue) 54%, var(--line));
-      background: color-mix(in srgb, var(--blue) 10%, var(--surface));
+    .button:hover {
       transform: translateY(-1px);
+      border-color: color-mix(in srgb, var(--blue) 58%, var(--line));
+      background: color-mix(in srgb, var(--blue) 10%, var(--surface));
     }
 
-    main {
-      padding: 28px 0 46px;
+    .button.primary {
+      border-color: color-mix(in srgb, var(--blue) 74%, var(--line));
+      background: var(--blue);
+      color: #fff;
     }
 
     .hero {
+      min-height: 560px;
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(310px, 0.62fr);
-      gap: 22px;
-      align-items: stretch;
-      margin-bottom: 22px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.7fr);
+      gap: 18px;
     }
 
-    .intro,
-    .mission {
+    .hero-panel,
+    .playground,
+    .glass-panel,
+    .skill-card,
+    .path-card {
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--surface);
       box-shadow: var(--shadow);
-      padding: 24px;
     }
 
-    .intro {
+    .hero-panel {
       position: relative;
       overflow: hidden;
+      display: grid;
+      align-content: center;
+      padding: clamp(26px, 5vw, 58px);
       background:
-        linear-gradient(135deg, color-mix(in srgb, var(--surface) 88%, var(--blue)), var(--surface) 46%),
+        linear-gradient(135deg, color-mix(in srgb, var(--surface) 78%, var(--blue)), var(--surface) 48%),
         var(--surface);
     }
 
-    .eyebrow {
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      bottom: -90px;
+      width: 260px;
+      height: 260px;
+      border: 1px solid color-mix(in srgb, var(--blue) 28%, transparent);
+      border-radius: 50%;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .kicker {
+      width: fit-content;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       color: var(--green);
-      font-size: 0.78rem;
-      font-weight: 760;
+      font-size: 0.76rem;
+      font-weight: 820;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
-    .eyebrow::before {
+    .kicker::before {
       content: "";
-      width: 10px;
-      height: 10px;
+      width: 9px;
+      height: 9px;
       border-radius: 3px;
       background: var(--green);
     }
@@ -235,119 +308,173 @@
     }
 
     h1 {
-      margin-bottom: 12px;
-      max-width: 760px;
-      font-size: clamp(2.15rem, 5.2vw, 4.25rem);
-      line-height: 1.02;
+      max-width: 840px;
+      margin-bottom: 16px;
+      font-size: clamp(2.5rem, 6vw, 5.15rem);
+      line-height: 0.96;
     }
 
-    .intro p,
-    .mission p,
-    .section-head p {
+    .hero-panel p,
+    .section-head p,
+    .skill-card p,
+    .path-card p,
+    .playground p,
+    .modal-body p {
       color: var(--muted);
       line-height: 1.58;
+    }
+
+    .hero-panel p {
+      max-width: 690px;
+      font-size: 1.05rem;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 18px;
-    }
-
-    .primary-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      border: 1px solid color-mix(in srgb, var(--blue) 65%, var(--line));
-      border-radius: var(--radius);
-      background: var(--blue);
-      color: #fff;
-      padding: 10px 14px;
-      font-weight: 760;
-      text-decoration: none;
+      margin-top: 24px;
     }
 
     .hero-metrics {
       display: grid;
-      grid-template-columns: repeat(3, minmax(120px, 1fr));
+      grid-template-columns: repeat(3, minmax(110px, 1fr));
       gap: 10px;
-      margin-top: 22px;
+      margin-top: 28px;
     }
 
     .metric {
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: color-mix(in srgb, var(--surface) 82%, var(--surface-2));
+      background: color-mix(in srgb, var(--surface) 78%, var(--surface-soft));
       padding: 12px;
     }
 
-    .metric strong {
+    .metric strong,
+    .metric span {
       display: block;
-      font-size: 1.28rem;
-      line-height: 1.1;
+    }
+
+    .metric strong {
+      margin-bottom: 4px;
+      font-size: 1.32rem;
     }
 
     .metric span {
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .playground {
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      padding: 18px;
+      background:
+        linear-gradient(145deg, color-mix(in srgb, var(--surface) 86%, transparent), color-mix(in srgb, var(--surface-soft) 90%, transparent)),
+        var(--surface);
+    }
+
+    .playground-header {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .playground-header strong {
+      display: block;
+      font-size: 1.08rem;
+    }
+
+    .playground-header span {
       display: block;
       margin-top: 4px;
       color: var(--muted);
-      font-size: 0.8rem;
-      font-weight: 680;
-    }
-
-    .primary-button:hover {
-      filter: brightness(1.05);
-    }
-
-    .mission {
-      display: grid;
-      gap: 14px;
-      background:
-        linear-gradient(145deg, color-mix(in srgb, var(--surface) 70%, var(--surface-2)), var(--surface-3));
-    }
-
-    .level-label {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
       font-size: 0.84rem;
-      font-weight: 760;
-      color: var(--muted);
     }
 
-    .progress {
-      height: 12px;
+    .scenario-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .scenario-button {
+      min-height: 62px;
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
       border: 1px solid var(--line);
-      border-radius: 999px;
-      overflow: hidden;
-      background: color-mix(in srgb, var(--surface) 70%, var(--line));
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      color: var(--text);
+      padding: 10px;
+      text-align: left;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
 
-    .progress span {
+    .scenario-button:hover,
+    .scenario-button.active {
+      transform: translateX(3px);
+      border-color: color-mix(in srgb, var(--blue) 58%, var(--line));
+      background: color-mix(in srgb, var(--blue) 11%, var(--surface));
+    }
+
+    .scenario-button .key {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--surface);
+      font-size: 0.8rem;
+      font-weight: 850;
+    }
+
+    .scenario-button strong,
+    .scenario-button span {
       display: block;
-      width: 14%;
-      height: 100%;
-      background: linear-gradient(90deg, var(--green), var(--blue));
-      transition: width 0.25s ease;
     }
 
-    .mission h2 {
-      margin-bottom: 4px;
-      font-size: 1.4rem;
+    .scenario-button strong {
+      font-size: 0.93rem;
     }
 
-    .mission ul {
-      margin: 0;
+    .scenario-button span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .flow-preview {
+      display: grid;
+      gap: 9px;
+      margin-top: 4px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      padding: 12px;
+    }
+
+    .flow-preview h3 {
+      margin-bottom: 2px;
+      font-size: 1rem;
+    }
+
+    .flow-preview ol {
+      margin: 4px 0 0;
       padding-left: 20px;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
-    section {
-      margin-top: 22px;
+    .section {
+      scroll-margin-top: 18px;
     }
 
     .section-head {
@@ -359,359 +486,285 @@
     }
 
     .section-head h2 {
-      margin-bottom: 4px;
-      font-size: 1.5rem;
+      margin-bottom: 5px;
+      font-size: clamp(1.45rem, 2.8vw, 2.1rem);
+      line-height: 1.08;
     }
 
-    .board,
-    .panel {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-
-    .board {
+    .glass-panel {
       padding: 16px;
-    }
-
-    .phase-track {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(130px, 1fr));
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-    }
-
-    .phase {
-      min-height: 124px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface-2);
-      padding: 12px;
-      text-align: left;
-      display: grid;
-      gap: 8px;
-      color: var(--text);
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-    }
-
-    .phase:hover,
-    .phase.active {
-      transform: translateY(-2px);
-      border-color: color-mix(in srgb, var(--blue) 60%, var(--line));
-      background: color-mix(in srgb, var(--blue) 10%, var(--surface));
-    }
-
-    .phase .number {
-      width: 28px;
-      height: 28px;
-      border-radius: 7px;
-      display: grid;
-      place-items: center;
-      background: var(--text);
-      color: var(--bg);
-      font-weight: 800;
-      font-size: 0.84rem;
-    }
-
-    .phase strong {
-      font-size: 0.95rem;
-    }
-
-    .phase span {
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.38;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(310px, 0.65fr);
-      gap: 16px;
-    }
-
-    .panel {
-      padding: 16px;
-    }
-
-    .panel h3 {
-      margin-bottom: 8px;
-      font-size: 1.12rem;
-    }
-
-    .steps {
-      display: grid;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .step {
-      border-left: 4px solid var(--blue);
-      background: var(--surface-2);
-      border-radius: var(--radius);
-      padding: 10px 12px;
-    }
-
-    .step strong {
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .step span {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.45;
     }
 
     .toolbar {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: minmax(230px, 1fr) auto;
       gap: 10px;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .search {
-      flex: 1 1 260px;
       min-height: 42px;
+      width: 100%;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--surface);
       color: var(--text);
       padding: 10px 12px;
+      font-weight: 650;
     }
 
     .filters {
       display: flex;
       flex-wrap: wrap;
+      justify-content: flex-end;
       gap: 8px;
     }
 
-    .filter {
+    .filters button {
+      min-height: 42px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--surface);
       color: var(--text);
-      padding: 8px 10px;
+      padding: 9px 11px;
       font-size: 0.86rem;
-      font-weight: 650;
+      font-weight: 720;
     }
 
-    .filter.active {
-      border-color: color-mix(in srgb, var(--green) 62%, var(--line));
-      background: color-mix(in srgb, var(--green) 12%, var(--surface));
+    .filters button.active {
+      border-color: color-mix(in srgb, var(--blue) 58%, var(--line));
+      background: color-mix(in srgb, var(--blue) 12%, var(--surface));
     }
 
-    .skill-list {
+    .skill-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
     }
 
-    .skill {
-      min-height: 116px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      color: var(--text);
-      padding: 12px;
-      text-align: left;
+    .skill-card {
+      min-height: 204px;
       display: grid;
       align-content: start;
-      gap: 7px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      gap: 10px;
+      color: var(--text);
+      padding: 15px;
+      text-align: left;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .skill:hover,
-    .skill.active {
-      transform: translateY(-2px);
-      border-color: color-mix(in srgb, var(--green) 58%, var(--line));
+    .skill-card:hover,
+    .skill-card:focus-visible {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--blue) 58%, var(--line));
+      background: color-mix(in srgb, var(--blue) 7%, var(--surface));
+      box-shadow: 0 24px 58px rgba(18, 25, 33, 0.16);
+    }
+
+    .skill-card.hidden {
+      display: none;
     }
 
     .tag {
       width: fit-content;
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 3px 8px;
+      background: var(--surface-soft);
       color: var(--muted);
+      padding: 4px 8px;
       font-size: 0.72rem;
-      font-weight: 760;
-      text-transform: uppercase;
+      font-weight: 800;
     }
 
-    .skill strong {
-      word-break: break-word;
-    }
-
-    .skill span {
-      color: var(--muted);
-      font-size: 0.86rem;
-      line-height: 1.42;
-    }
-
-    .detail-list {
-      display: grid;
-      gap: 10px;
-      margin: 12px 0 0;
-    }
-
-    .detail-item {
-      border-top: 1px solid var(--line);
-      padding-top: 10px;
-    }
-
-    .detail-item strong {
-      display: block;
-      margin-bottom: 4px;
+    .open-hint {
+      margin-top: auto;
       color: var(--blue);
+      font-size: 0.82rem;
+      font-weight: 800;
     }
 
-    .detail-item span {
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .paths {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .path {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      padding: 12px;
-      text-align: left;
-      color: var(--text);
-      min-height: 128px;
-    }
-
-    .path.active,
-    .path:hover {
-      border-color: color-mix(in srgb, var(--amber) 65%, var(--line));
-      background: color-mix(in srgb, var(--amber) 12%, var(--surface));
-    }
-
-    .path strong {
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .path span {
-      color: var(--muted);
-      font-size: 0.86rem;
-      line-height: 1.42;
-    }
-
-    .path-output {
-      margin-top: 12px;
-      border: 1px dashed color-mix(in srgb, var(--amber) 68%, var(--line));
-      border-radius: var(--radius);
-      padding: 12px;
-      background: var(--surface-3);
-    }
-
-    .path-output ol {
-      margin: 10px 0 0;
-      padding-left: 20px;
-      line-height: 1.6;
-    }
-
-    .gates {
+    .path-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
+      gap: 12px;
     }
 
-    .gate {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 12px;
-      background: var(--surface);
+    .path-card {
+      padding: 16px;
     }
 
-    .gate strong {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--rose);
-    }
-
-    .gate span {
+    .path-card ul {
+      margin: 12px 0 0;
+      padding-left: 20px;
       color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.45;
+      line-height: 1.58;
     }
 
     footer {
-      margin-top: 24px;
-      padding: 16px 0 4px;
+      padding: 18px 0 0;
+      border-top: 1px solid var(--line);
       color: var(--muted);
-      font-size: 0.86rem;
-      text-align: center;
+      font-size: 0.9rem;
     }
 
-    @media (max-width: 980px) {
-      .hero,
-      .grid-2 {
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(5, 8, 12, 0.58);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal {
+      width: min(920px, 100%);
+      max-height: min(760px, calc(100vh - 40px));
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.36);
+    }
+
+    .modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface) 94%, transparent);
+      backdrop-filter: blur(12px);
+      padding: 18px;
+    }
+
+    .modal-head h2 {
+      margin-bottom: 6px;
+      font-size: 1.45rem;
+    }
+
+    .modal-close {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 1.2rem;
+    }
+
+    .modal-body {
+      display: grid;
+      gap: 14px;
+      padding: 18px;
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .modal-section {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--surface) 88%, var(--surface-soft));
+      padding: 14px;
+    }
+
+    .modal-section h3 {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .modal-section ul,
+    .modal-section ol {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.56;
+    }
+
+    .file-path {
+      display: inline-flex;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--surface-soft);
+      padding: 6px 8px;
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 1060px) {
+      .layout {
         grid-template-columns: 1fr;
       }
 
-      .paths,
-      .gates {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .side-rail {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        height: auto;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        justify-items: start;
       }
 
-      h1 {
-        font-size: 2.3rem;
+      .rail-nav {
+        display: flex;
+        overflow-x: auto;
+        max-width: 100%;
+      }
+
+      .hero,
+      .skill-grid,
+      .path-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
       }
     }
 
-    @media (max-width: 680px) {
-      .shell {
-        width: min(100% - 20px, 1180px);
+    @media (max-width: 720px) {
+      .topbar,
+      .section-head,
+      .toolbar,
+      .modal-grid {
+        display: grid;
+        grid-template-columns: 1fr;
       }
 
-      .topbar {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .nav {
-        width: 100%;
+      .top-actions,
+      .filters {
         justify-content: flex-start;
-      }
-
-      .nav button,
-      .ghost-button {
-        flex: 1 1 auto;
-      }
-
-      .theme-icon-button {
-        flex: 0 0 40px;
       }
 
       .hero-metrics {
         grid-template-columns: 1fr;
       }
 
-      .intro,
-      .mission,
-      .panel,
-      .board {
-        padding: 14px;
-      }
-
-      .skill-list,
-      .paths,
-      .gates {
-        grid-template-columns: 1fr;
+      .hero-panel {
+        padding: 24px;
       }
 
       h1 {
-        font-size: 2rem;
+        font-size: 2.35rem;
       }
     }
 
@@ -727,469 +780,400 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="shell topbar">
-      <div class="brand">
-        <div class="mark" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none">
-            <path d="M8 24h10l5-12 7 24 5-12h5" stroke="var(--blue)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M10 38h28" stroke="var(--green)" stroke-width="4" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div>
-          <strong>Skills</strong>
-          <span>Aprenda o fluxo operacional por fases</span>
-        </div>
-      </div>
-      <nav class="nav" aria-label="Navegacao principal">
-        <button
-          id="themeToggle"
-          class="theme-icon-button"
-          type="button"
-          aria-label="Alternar tema"
-          title="Alternar tema"
-        ></button>
+  <div class="shell layout">
+    <aside class="side-rail" aria-label="Navegacao principal">
+      <a class="rail-brand" href="/home" aria-label="Skills home">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 12h5l3-7 4 14 3-7h1"></path>
+          <path d="M5 20h14"></path>
+        </svg>
+      </a>
+
+      <nav class="rail-nav">
+        <a class="rail-link active" href="#inicio" aria-label="Inicio" title="Inicio">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11 12 4l8 7"></path><path d="M6 10v10h12V10"></path></svg>
+        </a>
+        <a class="rail-link" href="#playground" aria-label="Playground" title="Playground">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8 8 4-8 4V8z"></path><path d="M3 5h18v14H3z"></path></svg>
+        </a>
+        <a class="rail-link" href="#catalogo" aria-label="Catalogo" title="Catalogo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+        </a>
+        <a class="rail-link" href="#fluxos" aria-label="Fluxos" title="Fluxos">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4v6h6"></path><path d="M18 20v-6h-6"></path><path d="M6 10a7 7 0 0 1 11-4"></path><path d="M18 14a7 7 0 0 1-11 4"></path></svg>
+        </a>
       </nav>
-    </div>
-  </header>
 
-  <main class="shell">
-    <section class="hero" id="topo">
-      <article class="intro">
-        <div class="eyebrow">Modo aprendizado</div>
-        <h1>Jogue a jornada das Skills fase por fase.</h1>
-        <p>
-          Esta experiencia mostra como uma agente trabalha com skills: ela entende o pedido,
-          passa por gates, monta PRD e Spec, executa com controle, valida evidencias e so publica
-          quando o fluxo esta rastreavel.
-        </p>
-        <div class="hero-actions">
-          <a class="primary-button" href="game.html">Abrir jogo</a>
-          <button class="ghost-button" data-scroll="catalogo" type="button">Ver catalogo</button>
+      <button id="themeToggle" class="theme-button" type="button" aria-label="Alternar tema" title="Alternar tema"></button>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div class="brand-copy">
+          <strong>Skills</strong>
+          <span>Explore, abra uma skill e veja como o fluxo funciona por dentro.</span>
         </div>
-        <div class="hero-metrics" aria-label="Resumo do fluxo">
-          <div class="metric">
-            <strong>8</strong>
-            <span>fases guiadas</span>
+        <div class="top-actions">
+          <a class="button" href="#catalogo">Ver catalogo</a>
+          <a class="button primary" href="game.html">Abrir jogo</a>
+        </div>
+      </header>
+
+      <section class="hero section" id="inicio">
+        <article class="hero-panel">
+          <span class="kicker">Command center</span>
+          <h1>Aprenda mexendo, sem perder o contexto.</h1>
+          <p>
+            Escolha um cenario, veja o caminho recomendado e abra qualquer skill para entender
+            objetivo, estrutura, guardrails e contrato de saida em um modal focado.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#playground">Testar um cenario</a>
+            <a class="button" href="#catalogo">Abrir uma skill</a>
           </div>
-          <div class="metric">
-            <strong>10</strong>
-            <span>skills mapeadas</span>
+          <div class="hero-metrics">
+            <div class="metric"><strong>4</strong><span>cenarios interativos</span></div>
+            <div class="metric"><strong>10</strong><span>skills exploraveis</span></div>
+            <div class="metric"><strong>Esc</strong><span>fecha modal rapido</span></div>
           </div>
-          <div class="metric">
-            <strong>0</strong>
-            <span>backend necessario</span>
-          </div>
-        </div>
-      </article>
-
-      <aside class="mission" aria-live="polite">
-        <div class="level-label">
-          <span id="levelLabel">Fase 1 de 7</span>
-          <span id="xpLabel">14% concluido</span>
-        </div>
-        <div class="progress" aria-label="Progresso da jornada"><span id="progressBar"></span></div>
-        <div>
-          <h2 id="missionTitle">Entrada do pedido</h2>
-          <p id="missionText">A agente identifica se o usuario pediu analise, alteracao, validacao, publicacao ou melhoria de processo.</p>
-        </div>
-        <ul id="missionChecks">
-          <li>Classificar a demanda.</li>
-          <li>Verificar se ha execucao.</li>
-          <li>Acionar a skill correta.</li>
-        </ul>
-      </aside>
-    </section>
-
-    <section id="jornada">
-      <div class="section-head">
-        <div>
-          <h2>Jornada por fases</h2>
-          <p>Clique em uma fase para ver objetivo, acao e retorno esperado.</p>
-        </div>
-      </div>
-      <article class="board">
-        <div class="phase-track" id="phaseTrack"></div>
-      </article>
-    </section>
-
-    <section class="grid-2" aria-label="Detalhes da fase">
-      <article class="panel">
-        <h3 id="phaseTitle">Fase 1 - Entrada do pedido</h3>
-        <p id="phaseDescription">A primeira tarefa e entender o tipo de pedido antes de agir.</p>
-        <div class="steps" id="phaseSteps"></div>
-      </article>
-
-      <aside class="panel">
-        <h3>Retorno da fase</h3>
-        <p id="phaseOutput">Classificacao do pedido, skill inicial e proximo gate.</p>
-        <div class="detail-list">
-          <div class="detail-item">
-            <strong>Regra simples</strong>
-            <span id="phaseRule">Se existe execucao, o gate de prontidao vem antes de qualquer comando.</span>
-          </div>
-          <div class="detail-item">
-            <strong>Skill em destaque</strong>
-            <span id="phaseSkill">project-readiness-gate</span>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <section id="catalogo">
-      <div class="section-head">
-        <div>
-          <h2>Catalogo de Skills</h2>
-          <p>Selecione uma skill para entender objetivo, acionamento e retorno.</p>
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <article class="panel">
-          <div class="toolbar">
-            <input class="search" id="skillSearch" type="search" placeholder="Buscar skill, gate ou retorno..." aria-label="Buscar skill" />
-            <div class="filters" id="filters"></div>
-          </div>
-          <div class="skill-list" id="skillList"></div>
         </article>
 
-        <aside class="panel" aria-live="polite">
-          <h3 id="skillName">project-readiness-gate</h3>
-          <p id="skillSummary">Valida se a execucao pode comecar.</p>
-          <div class="detail-list">
-            <div class="detail-item"><strong>Objetivo</strong><span id="skillGoal"></span></div>
-            <div class="detail-item"><strong>Quando usar</strong><span id="skillWhen"></span></div>
-            <div class="detail-item"><strong>Deve retornar</strong><span id="skillReturn"></span></div>
-            <div class="detail-item"><strong>Formato pratico</strong><span id="skillFormat"></span></div>
+        <aside class="playground" id="playground">
+          <div class="playground-header">
+            <div>
+              <strong>Playground de decisao</strong>
+              <span>Use mouse, teclado ou toque para testar um caminho.</span>
+            </div>
+          </div>
+
+          <div class="scenario-list">
+            <button class="scenario-button active" type="button" data-scenario="implementacao">
+              <span class="key">1</span>
+              <span><strong>Implementar mudanca</strong><span>Pedido com criacao, ajuste ou correcao.</span></span>
+            </button>
+            <button class="scenario-button" type="button" data-scenario="entendimento">
+              <span class="key">2</span>
+              <span><strong>Entender projeto</strong><span>Antes de mexer, descubra o comportamento real.</span></span>
+            </button>
+            <button class="scenario-button" type="button" data-scenario="visual">
+              <span class="key">3</span>
+              <span><strong>Mudar interface</strong><span>Quando layout, UX ou tema entram no escopo.</span></span>
+            </button>
+            <button class="scenario-button" type="button" data-scenario="publicacao">
+              <span class="key">4</span>
+              <span><strong>Publicar entrega</strong><span>Quando precisa revisar, versionar e abrir PR.</span></span>
+            </button>
+          </div>
+
+          <div class="flow-preview" aria-live="polite">
+            <h3 id="flowTitle">Implementar mudanca</h3>
+            <p id="flowText">Comece validando contexto, aprove o plano e so depois execute.</p>
+            <ol id="flowSteps"></ol>
           </div>
         </aside>
-      </div>
-    </section>
+      </section>
 
-    <section id="caminhos">
-      <div class="section-head">
+      <section class="section" id="catalogo">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Catalogo vivo</span>
+            <h2>Abra uma skill e veja sua estrutura real.</h2>
+            <p>Cada card abre um modal com objetivo, acionamento, fluxo, contrato e guardrails baseados nos arquivos `SKILL.md`.</p>
+          </div>
+        </div>
+
+        <article class="glass-panel">
+          <div class="toolbar">
+            <input class="search" id="skillSearch" type="search" placeholder="Buscar skill, fluxo, guardrail ou resultado..." aria-label="Buscar skill" />
+            <div class="filters" aria-label="Filtros de skills">
+              <button class="active" type="button" data-filter="Todas">Todas</button>
+              <button type="button" data-filter="Base">Base</button>
+              <button type="button" data-filter="SDD">SDD</button>
+              <button type="button" data-filter="Especialista">Especialista</button>
+              <button type="button" data-filter="Publicacao">Publicacao</button>
+            </div>
+          </div>
+
+          <div class="skill-grid" id="skillGrid"></div>
+        </article>
+      </section>
+
+      <section class="section" id="fluxos">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Fluxos prontos</span>
+            <h2>Atalhos para escolher a primeira acao.</h2>
+            <p>Quando estiver em duvida, use estes caminhos como ponto de partida.</p>
+          </div>
+        </div>
+
+        <div class="path-grid">
+          <article class="path-card">
+            <h3>Preciso entender antes</h3>
+            <p>Para explorar um projeto sem assumir comportamento.</p>
+            <ul>
+              <li>project-readiness-gate</li>
+              <li>context</li>
+              <li>resposta com fatos e riscos</li>
+            </ul>
+          </article>
+          <article class="path-card">
+            <h3>Preciso executar</h3>
+            <p>Para transformar pedido em entrega rastreavel.</p>
+            <ul>
+              <li>project-readiness-gate</li>
+              <li>sdd-sprint-orquestracao</li>
+              <li>PRD, Spec, codigo e validacao</li>
+            </ul>
+          </article>
+          <article class="path-card">
+            <h3>Preciso publicar</h3>
+            <p>Para preparar branch, revisao e PR.</p>
+            <ul>
+              <li>code-review</li>
+              <li>github-flow</li>
+              <li>PR para main</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <footer>
+        Skills transforma pedidos em caminhos verificaveis. Acesse o jogo para praticar a jornada completa.
+      </footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="skillModal" aria-hidden="true">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+      <header class="modal-head">
         <div>
-          <h2>Caminhos operacionais</h2>
-          <p>Escolha um tipo de trabalho e veja a sequencia de skills recomendada.</p>
+          <span class="tag" id="modalGroup">Base</span>
+          <h2 id="modalTitle">Skill</h2>
+          <p id="modalSummary"></p>
+        </div>
+        <button class="modal-close" id="modalClose" type="button" aria-label="Fechar modal">x</button>
+      </header>
+      <div class="modal-body">
+        <span class="file-path" id="modalFile"></span>
+        <div class="modal-grid">
+          <article class="modal-section">
+            <h3>Objetivo</h3>
+            <p id="modalGoal"></p>
+          </article>
+          <article class="modal-section">
+            <h3>Quando usar</h3>
+            <p id="modalWhen"></p>
+          </article>
+          <article class="modal-section">
+            <h3>Fluxo interno</h3>
+            <ol id="modalFlow"></ol>
+          </article>
+          <article class="modal-section">
+            <h3>Contrato de saida</h3>
+            <ul id="modalOutput"></ul>
+          </article>
+          <article class="modal-section">
+            <h3>Guardrails</h3>
+            <ul id="modalGuardrails"></ul>
+          </article>
+          <article class="modal-section">
+            <h3>Como ler essa skill</h3>
+            <p id="modalInside"></p>
+          </article>
         </div>
       </div>
-      <article class="panel">
-        <div class="paths" id="pathList"></div>
-        <div class="path-output">
-          <strong id="pathTitle">Implementar uma mudanca</strong>
-          <p id="pathText">Fluxo completo para sair de um pedido ate validacao final.</p>
-          <ol id="pathSteps"></ol>
-        </div>
-      </article>
     </section>
+  </div>
 
-    <section id="gates">
-      <div class="section-head">
-        <div>
-          <h2>Gates que protegem o fluxo</h2>
-          <p>Gate e uma trava de qualidade: se faltar algo critico, a agente para e pede confirmacao.</p>
-        </div>
-      </div>
-      <article class="gates" id="gateList"></article>
-    </section>
-
-    <footer>
-      Projeto Skills. Documentacao interativa em HTML, CSS e JavaScript estaticos.
-    </footer>
-  </main>
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    if (window.VLibras) {
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    }
+  </script>
 
   <script>
-    const phases = [
-      {
-        title: "Entrada do pedido",
-        short: "Classificar a demanda",
-        text: "A agente identifica se o usuario pediu analise, alteracao, validacao, publicacao ou melhoria de processo.",
-        steps: [
-          ["Ler o pedido", "Separar objetivo, restricoes e tipo de trabalho."],
-          ["Identificar execucao", "Se houver criacao, edicao, teste, deploy ou automacao, o gate entra."],
-          ["Escolher skill inicial", "A skill usada depende do risco e do objetivo."]
-        ],
-        output: "Classificacao do pedido, skill inicial e proximo gate.",
-        rule: "Se existe execucao, o gate de prontidao vem antes de qualquer comando.",
-        skill: "project-readiness-gate"
-      },
-      {
-        title: "Prontidao",
-        short: "Validar stack e contexto",
-        text: "Antes de executar, a agente confirma backend, frontend, docs, comandos, criterios e riscos.",
-        steps: [
-          ["Checar triade", "Backend, frontend e docs precisam estar preenchidos ou marcados como nao aplicaveis."],
-          ["Listar lacunas", "Campos ausentes viram perguntas objetivas."],
-          ["Liberar ou bloquear", "Sem contexto minimo, a execucao nao comeca."]
-        ],
-        output: "Status aprovado ou bloqueado, campos validados e perguntas pendentes.",
-        rule: "Nunca executar comando, edicao ou teste com prontidao bloqueada.",
-        skill: "project-readiness-gate"
-      },
-      {
-        title: "Plano",
-        short: "Combinar o que sera feito",
-        text: "A agente apresenta entendimento, proposta, arquivos previstos, riscos e impacto esperado.",
-        steps: [
-          ["Descrever entendimento", "O usuario precisa conseguir corrigir a rota antes de qualquer mudanca."],
-          ["Apontar arquivos", "A previsao de impacto evita escopo escondido."],
-          ["Aguardar aprovacao", "Plano aprovado ainda nao e execucao; falta comando explicito."]
-        ],
-        output: "Plano estruturado com status de aprovacao.",
-        rule: "Sem plano aprovado, nada operacional deve acontecer.",
-        skill: "sdd-sprint-orquestracao"
-      },
-      {
-        title: "PRD e Spec",
-        short: "Transformar pedido em contrato",
-        text: "O pedido vira PRD e depois Spec, para que a implementacao tenha criterio de pronto.",
-        steps: [
-          ["Criar PRD", "Contexto, problema, objetivo, requisitos e criterios de aceite."],
-          ["Criar Spec", "Arquivos, comportamento esperado, validacoes e riscos tecnicos."],
-          ["Manter rastreio", "Cada mudanca deve apontar para uma necessidade clara."]
-        ],
-        output: "PRD e Spec alinhados com a demanda aprovada.",
-        rule: "Se a Spec nao mapeia um requisito, esse ponto nao esta pronto para implementar.",
-        skill: "sdd-pesquisa-prd + sdd-prd-spec"
-      },
-      {
-        title: "Execucao",
-        short: "Implementar com controle",
-        text: "A agente edita apenas o escopo aprovado e registra desvios quando surgem.",
-        steps: [
-          ["Aplicar TDD quando houver codigo", "Red, green e refactor quando existir suite ou criterio automatizavel."],
-          ["Editar incrementalmente", "Mudancas pequenas sao mais faceis de revisar."],
-          ["Preservar limites", "Nao resolver demandas paralelas sem aprovacao."]
-        ],
-        output: "Arquivos alterados, itens concluidos, pendencias e evidencias.",
-        rule: "Mudanca fora da Spec precisa ser tratada como desvio.",
-        skill: "sdd-spec-code"
-      },
-      {
-        title: "Validacao",
-        short: "Provar que esta correto",
-        text: "A entrega e comparada com PRD, Spec, testes, riscos e criterios de aceite.",
-        steps: [
-          ["Rodar validacoes", "Automatica quando existir, manual quando for frontend estatico."],
-          ["Consolidar metricas", "Planejado, executado, aprovado, lacunas e risco residual."],
-          ["Perguntar por testes extras", "Antes de encerrar, o usuario decide se quer mais validacao."]
-        ],
-        output: "Relatorio estruturado de testes, metricas e risco residual.",
-        rule: "Sem evidencia minima, a entrega nao deve ser classificada como pronta sem ressalvas.",
-        skill: "sdd-validacao + code-review"
-      },
-      {
-        title: "Publicacao",
-        short: "Levar para main com rastreio",
-        text: "Commit, push e PR so acontecem com branch de trabalho, revisao e documentacao.",
-        steps: [
-          ["Revisar antes", "Code review procura bug, risco, seguranca e regressao."],
-          ["Criar branch", "Publicacao usa branch de trabalho para main."],
-          ["Abrir PR", "O PR documenta mudancas, testes e como validar."]
-        ],
-        output: "Commit, push, PR e checklist de publicacao.",
-        rule: "Publicacao sem validacao e bloqueio de processo.",
-        skill: "github-flow"
-      }
-    ];
-
-    const skills = [
-      ["project-readiness-gate", "Gate", "Bloqueia execucao sem contexto tecnico minimo.", "Garantir que stack, arquitetura, repositorios, comandos e criterios estejam claros antes de agir.", "Antes de qualquer pedido executavel.", "Status aprovado/bloqueado, campos completos, campos ausentes, perguntas e risco.", "status + campos validados + lacunas + proxima acao"],
-      ["context", "Descoberta", "Mapeia o comportamento real do projeto.", "Separar o que esta comprovado no codigo, o que e risco e o que e hipotese.", "Quando a tarefa exige entender modulo, fluxo ou fronteira tecnica.", "Resumo tecnico, evidencias por arquivo, riscos e confianca.", "fatos + riscos + hipoteses + referencias"],
-      ["sdd-sprint-orquestracao", "SDD", "Controla o fluxo ponta a ponta.", "Impor plano aprovado, comando explicito, SDD, validacao e metricas.", "Em qualquer alteracao, ajuste, automacao, deploy ou publicacao.", "Plano, autorizacao registrada, fases, testes, metricas e como testar.", "plano + aprovacao + execucao + relatorio"],
-      ["sdd-pesquisa-prd", "SDD", "Converte pedido em PRD.", "Transformar demanda em problema, objetivo, requisitos e aceite.", "Quando uma nova demanda precisa ser estruturada.", "PRD com contexto, escopo, requisitos, aceite, riscos e duvidas.", "PRD.md"],
-      ["sdd-prd-spec", "SDD", "Converte PRD em Spec tecnica.", "Mapear requisitos para arquivos, regras e validacoes.", "Depois do PRD aprovado.", "Spec com arquivos, comportamento, criterios e validacoes.", "Spec.md"],
-      ["sdd-spec-code", "SDD", "Implementa a Spec.", "Editar somente o escopo aprovado, com TDD quando aplicavel.", "Quando a Spec esta pronta para execucao.", "Itens implementados, evidencias, testes e pendencias.", "diff + evidencias + como testar"],
-      ["sdd-validacao", "Qualidade", "Valida PRD, Spec, codigo e evidencias.", "Decidir se a entrega esta aprovada, aprovada com ressalvas ou reprovada.", "Antes de concluir ou publicar.", "Relatorio de testes, metricas, lacunas, risco residual e checkpoint de testes extras.", "matriz planejado vs executado"],
-      ["code-review", "Qualidade", "Revisa bugs e riscos.", "Priorizar achados de bug, seguranca, regressao e qualidade.", "Em pedidos de revisar, validar, publicar ou integrar.", "Achados por severidade, evidencias e lacunas de teste.", "findings + riscos + recomendacao"],
-      ["front-ux-ui-design", "Especialista", "Conduz mudancas visuais.", "Propor exatamente 3 direcoes visuais com links e trade-offs antes de implementar.", "Em qualquer mudanca visual, layout, tema, UX ou responsividade.", "Direcao escolhida, decisoes de design, estados de UI e validacao responsiva.", "3 propostas + aprovacao + evidencias"],
-      ["api-doc-postman", "Especialista", "Mantem docs de API sincronizadas.", "Garantir OpenAPI, exemplos, Postman e docs alinhados a endpoints.", "Quando endpoints de backend mudam.", "Contrato atualizado, exemplos, colecao e validacao.", "OpenAPI + docs + colecao"],
-      ["data-model", "Especialista", "Apoia desenho de dados.", "Planejar DER, multi-tenant, migracoes e limites de modelo.", "Quando a tarefa altera arquitetura de dados.", "Analise, proposta de modelo, riscos e caminho de migracao.", "DER + plano + riscos"],
-      ["vps-easypanel", "Operacao", "Apoia deploy em VPS/EasyPanel.", "Planejar Docker, dominios, SSL, variaveis e baseline de seguranca.", "Quando a tarefa envolve deploy ou operacao.", "Checklist de deploy, riscos, comandos e validacao.", "plano infra + checklist"],
-      ["github-flow", "Publicacao", "Controla commit, push e PR.", "Publicar em branch de trabalho para main com documentacao e validacao.", "Quando o usuario pede commit, push, PR ou publicacao.", "Branch, commit, push, PR, testes e como validar.", "hash + PR + checklist"],
-      ["aprendizado-profundo", "Evolucao", "Melhora processos e skills.", "Propor melhoria baseada em feedback e evidencia, sempre com aprovacao.", "Quando o usuario pede melhorar processo ou skill.", "Proposta de melhoria, impacto, risco e aprovacao pendente.", "proposta + decisao do usuario"]
-    ].map(([name, group, summary, goal, when, returns, format]) => ({ name, group, summary, goal, when, returns, format }));
-
-    const paths = [
-      {
-        title: "Entender projeto",
-        text: "Use quando a meta e descobrir como algo funciona.",
-        steps: ["project-readiness-gate", "context", "resposta com fatos, riscos, hipoteses e proximo passo"]
-      },
-      {
-        title: "Implementar mudanca",
-        text: "Fluxo completo para sair de pedido ate validacao.",
-        steps: ["project-readiness-gate", "sdd-sprint-orquestracao", "sdd-pesquisa-prd", "sdd-prd-spec", "sdd-spec-code", "sdd-validacao"]
-      },
-      {
-        title: "Mudar frontend",
-        text: "Use quando existe UI, layout, responsividade ou experiencia.",
-        steps: ["project-readiness-gate", "sdd-sprint-orquestracao", "front-ux-ui-design", "aprovacao visual", "implementacao", "validacao responsiva"]
-      },
-      {
-        title: "Publicar",
-        text: "Use quando o usuario pede commit, push, PR ou deploy.",
-        steps: ["code-review", "github-flow", "branch de trabalho", "commit", "push", "PR para main"]
-      }
-    ];
-
-    const gates = [
-      ["Prontidao", "Confirma stack, contexto, comandos, criterios e triade obrigatoria antes de executar."],
-      ["Plano", "Exige entendimento, proposta, arquivos previstos, riscos, impacto e aprovacao explicita."],
-      ["Comando explicito", "Mesmo com plano aprovado, a execucao so comeca quando o usuario autoriza claramente."],
-      ["UX/UI", "Mudanca visual precisa de exatamente 3 propostas com links, trade-offs e escolha aprovada."],
-      ["Validacao", "Entrega precisa de testes ou checks, metricas, lacunas e risco residual."],
-      ["Publicacao", "Commit, push e PR exigem revisao, branch de trabalho e documentacao de validacao."]
-    ];
-
     const THEME_STORAGE_KEY = "skills-ui-theme:v1";
     const root = document.documentElement;
-    const phaseTrack = document.getElementById("phaseTrack");
-    const phaseTitle = document.getElementById("phaseTitle");
-    const phaseDescription = document.getElementById("phaseDescription");
-    const phaseSteps = document.getElementById("phaseSteps");
-    const phaseOutput = document.getElementById("phaseOutput");
-    const phaseRule = document.getElementById("phaseRule");
-    const phaseSkill = document.getElementById("phaseSkill");
-    const levelLabel = document.getElementById("levelLabel");
-    const xpLabel = document.getElementById("xpLabel");
-    const progressBar = document.getElementById("progressBar");
-    const missionTitle = document.getElementById("missionTitle");
-    const missionText = document.getElementById("missionText");
-    const missionChecks = document.getElementById("missionChecks");
-    const skillList = document.getElementById("skillList");
-    const filters = document.getElementById("filters");
-    const skillSearch = document.getElementById("skillSearch");
-    const pathList = document.getElementById("pathList");
-    const pathTitle = document.getElementById("pathTitle");
-    const pathText = document.getElementById("pathText");
-    const pathSteps = document.getElementById("pathSteps");
-    const gateList = document.getElementById("gateList");
     const themeToggle = document.getElementById("themeToggle");
-    let selectedPhase = 0;
-    let selectedSkill = skills[0].name;
-    let selectedGroup = "Todas";
-    let selectedPath = 1;
+    const skillGrid = document.getElementById("skillGrid");
+    const skillSearch = document.getElementById("skillSearch");
+    const filterButtons = [...document.querySelectorAll("[data-filter]")];
+    const scenarioButtons = [...document.querySelectorAll("[data-scenario]")];
+    const flowTitle = document.getElementById("flowTitle");
+    const flowText = document.getElementById("flowText");
+    const flowSteps = document.getElementById("flowSteps");
+    const modal = document.getElementById("skillModal");
+    const modalDialog = modal.querySelector(".modal");
+    const modalClose = document.getElementById("modalClose");
+    let lastFocusedElement = null;
 
-    function setPhase(index) {
-      selectedPhase = index;
-      const phase = phases[index];
-      const percent = Math.round(((index + 1) / phases.length) * 100);
-      levelLabel.textContent = `Fase ${index + 1} de ${phases.length}`;
-      xpLabel.textContent = `${percent}% concluido`;
-      progressBar.style.width = `${percent}%`;
-      missionTitle.textContent = phase.title;
-      missionText.textContent = phase.text;
-      missionChecks.innerHTML = phase.steps.map(([title]) => `<li>${title}</li>`).join("");
-      phaseTitle.textContent = `Fase ${index + 1} - ${phase.title}`;
-      phaseDescription.textContent = phase.text;
-      phaseOutput.textContent = phase.output;
-      phaseRule.textContent = phase.rule;
-      phaseSkill.textContent = phase.skill;
-      phaseSteps.innerHTML = phase.steps.map(([title, text]) => (
-        `<div class="step"><strong>${title}</strong><span>${text}</span></div>`
-      )).join("");
-      document.querySelectorAll(".phase").forEach((item, itemIndex) => {
-        item.classList.toggle("active", itemIndex === index);
-      });
-    }
+    const sunIcon = `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2"></path><path d="M12 20v2"></path>
+        <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
+        <path d="M2 12h2"></path><path d="M20 12h2"></path>
+        <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
+      </svg>`;
 
-    function renderPhases() {
-      phaseTrack.innerHTML = phases.map((phase, index) => (
-        `<button class="phase" type="button" data-phase="${index}">
-          <span class="number">${index + 1}</span>
-          <strong>${phase.title}</strong>
-          <span>${phase.short}</span>
-        </button>`
-      )).join("");
-      phaseTrack.querySelectorAll("[data-phase]").forEach((button) => {
-        button.addEventListener("click", () => setPhase(Number(button.dataset.phase)));
-      });
-      setPhase(0);
-    }
+    const moonIcon = `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 7 7 0 1 0 20.5 14.5z"></path>
+      </svg>`;
 
-    function setSkill(name) {
-      selectedSkill = name;
-      const skill = skills.find((item) => item.name === name) || skills[0];
-      document.getElementById("skillName").textContent = skill.name;
-      document.getElementById("skillSummary").textContent = skill.summary;
-      document.getElementById("skillGoal").textContent = skill.goal;
-      document.getElementById("skillWhen").textContent = skill.when;
-      document.getElementById("skillReturn").textContent = skill.returns;
-      document.getElementById("skillFormat").textContent = skill.format;
-      document.querySelectorAll(".skill").forEach((item) => {
-        item.classList.toggle("active", item.dataset.skill === name);
-      });
-    }
-
-    function renderFilters() {
-      const groups = ["Todas", ...new Set(skills.map((skill) => skill.group))];
-      filters.innerHTML = groups.map((group) => (
-        `<button class="filter" type="button" data-group="${group}">${group}</button>`
-      )).join("");
-      filters.querySelectorAll("[data-group]").forEach((button) => {
-        button.addEventListener("click", () => {
-          selectedGroup = button.dataset.group;
-          renderSkills();
-        });
-      });
-    }
-
-    function renderSkills() {
-      const query = skillSearch.value.trim().toLowerCase();
-      const list = skills.filter((skill) => {
-        const matchesGroup = selectedGroup === "Todas" || skill.group === selectedGroup;
-        const haystack = `${skill.name} ${skill.group} ${skill.summary} ${skill.goal} ${skill.when} ${skill.returns}`.toLowerCase();
-        return matchesGroup && haystack.includes(query);
-      });
-      skillList.innerHTML = list.map((skill) => (
-        `<button class="skill" type="button" data-skill="${skill.name}">
-          <span class="tag">${skill.group}</span>
-          <strong>${skill.name}</strong>
-          <span>${skill.summary}</span>
-        </button>`
-      )).join("") || `<p>Nenhuma skill encontrada para este filtro.</p>`;
-      filters.querySelectorAll("[data-group]").forEach((button) => {
-        button.classList.toggle("active", button.dataset.group === selectedGroup);
-      });
-      skillList.querySelectorAll("[data-skill]").forEach((button) => {
-        button.addEventListener("click", () => setSkill(button.dataset.skill));
-      });
-      if (!list.some((skill) => skill.name === selectedSkill) && list[0]) {
-        selectedSkill = list[0].name;
+    const scenarios = {
+      implementacao: {
+        title: "Implementar mudanca",
+        text: "Comece validando contexto, aprove o plano e so depois execute.",
+        steps: ["project-readiness-gate", "sdd-sprint-orquestracao", "sdd-pesquisa-prd", "sdd-prd-spec", "sdd-spec-code", "sdd-validacao"]
+      },
+      entendimento: {
+        title: "Entender projeto",
+        text: "Use leitura tecnica antes de propor qualquer alteracao.",
+        steps: ["project-readiness-gate", "context", "fatos comprovados", "riscos", "proximo passo"]
+      },
+      visual: {
+        title: "Mudar interface",
+        text: "Mudanca visual precisa de benchmark, direcao aprovada e validacao responsiva.",
+        steps: ["project-readiness-gate", "sdd-sprint-orquestracao", "front-ux-ui-design", "aprovacao visual", "implementacao", "validacao"]
+      },
+      publicacao: {
+        title: "Publicar entrega",
+        text: "Antes de PR, revise qualidade, documente o que mudou e valide o caminho.",
+        steps: ["code-review", "github-flow", "branch de trabalho", "commit", "push", "PR para main"]
       }
-      setSkill(selectedSkill);
-    }
+    };
 
-    function setPath(index) {
-      selectedPath = index;
-      const path = paths[index];
-      pathTitle.textContent = path.title;
-      pathText.textContent = path.text;
-      pathSteps.innerHTML = path.steps.map((step) => `<li>${step}</li>`).join("");
-      document.querySelectorAll(".path").forEach((item, itemIndex) => {
-        item.classList.toggle("active", itemIndex === index);
-      });
-    }
-
-    function renderPaths() {
-      pathList.innerHTML = paths.map((path, index) => (
-        `<button class="path" type="button" data-path="${index}">
-          <strong>${path.title}</strong>
-          <span>${path.text}</span>
-        </button>`
-      )).join("");
-      pathList.querySelectorAll("[data-path]").forEach((button) => {
-        button.addEventListener("click", () => setPath(Number(button.dataset.path)));
-      });
-      setPath(selectedPath);
-    }
-
-    function renderGates() {
-      gateList.innerHTML = gates.map(([title, text]) => (
-        `<div class="gate"><strong>${title}</strong><span>${text}</span></div>`
-      )).join("");
-    }
+    const skills = [
+      {
+        name: "project-readiness-gate",
+        group: "Base",
+        file: "skills/project-readiness-gate/SKILL.md",
+        summary: "Bloqueia execucao quando falta contexto minimo.",
+        goal: "Garantir que comandos, edicoes e publicacoes so comecem com stack, arquitetura, repositorios e criterios confirmados.",
+        when: "Use antes de qualquer execucao operacional.",
+        flow: ["Classificar se o pedido envolve execucao.", "Validar checklist de stack/configuracao.", "Bloquear se backend, frontend ou docs estiverem ausentes.", "Listar lacunas e perguntas objetivas.", "Liberar handoff apenas quando o gate estiver aprovado."],
+        output: ["Status do gate.", "Campos completos e ausentes.", "Perguntas pendentes.", "Risco de seguir sem os dados."],
+        guardrails: ["Nao executar antes do gate aprovado.", "Nao assumir versao ou stack.", "Nao ocultar lacuna critica."],
+        inside: "A skill funciona como uma trava de seguranca. Ela olha primeiro para contexto, stack e criterios antes de permitir qualquer acao."
+      },
+      {
+        name: "context",
+        group: "Base",
+        file: "skills/context/SKILL.md",
+        summary: "Mapeia comportamento real do codigo.",
+        goal: "Produzir entendimento tecnico fiel ao codigo atual, separando fato, risco e hipotese.",
+        when: "Use quando a tarefa exige entender comportamento, modulos, integracoes ou fluxo critico.",
+        flow: ["Classificar dominio tecnico.", "Ler arquivos de maior sinal.", "Consolidar comportamento real.", "Separar comprovado, risco e hipotese.", "Recomendar proximo passo pequeno."],
+        output: ["Resumo tecnico objetivo.", "Evidencias por arquivo.", "Riscos relevantes.", "Nivel de confianca."],
+        guardrails: ["Nao afirmar implementado sem referencia.", "Nao expor segredos.", "Priorizar codigo sobre documentacao conflitante."],
+        inside: "A skill e um mapa do sistema: ela evita conclusoes por intuicao e exige evidencia do codigo."
+      },
+      {
+        name: "sdd-sprint-orquestracao",
+        group: "SDD",
+        file: "skills/sdd-sprint-orquestracao/SKILL.md",
+        summary: "Conduz uma mudanca de ponta a ponta.",
+        goal: "Garantir plano aprovado, autorizacao explicita, rastreabilidade SDD, testes e relatorio final.",
+        when: "Use em bugfix, feature, refatoracao, ajuste operacional, commit, push, PR ou publicacao.",
+        flow: ["Validar pedido e regras.", "Mapear impacto e riscos.", "Apresentar plano estruturado.", "Aguardar aprovacao e comando explicito.", "Executar PRD, Spec, codigo e validacao."],
+        output: ["Plano aprovado.", "Registro de autorizacao.", "Alteracoes por arquivo.", "Testes, metricas e como testar."],
+        guardrails: ["Nao executar sem plano aprovado.", "Nao pular TDD quando houver codigo.", "Nao encerrar sem validacao e checkpoint."],
+        inside: "E a orquestradora. Ela impede que uma demanda vire edicao solta sem rastro, teste ou criterio."
+      },
+      {
+        name: "sdd-pesquisa-prd",
+        group: "SDD",
+        file: "skills/sdd-pesquisa-prd/SKILL.md",
+        summary: "Transforma pedido em PRD.",
+        goal: "Converter pesquisa e intencao em problema, objetivo, escopo e criterios de aceite.",
+        when: "Use quando uma demanda ainda precisa virar requisito claro.",
+        flow: ["Entender contexto.", "Definir problema.", "Separar escopo incluido e fora de escopo.", "Registrar requisitos e criterios.", "Apontar riscos."],
+        output: ["PRD estruturado.", "Criterios de aceite.", "Riscos e premissas."],
+        guardrails: ["Nao tratar hipotese como requisito confirmado.", "Nao ampliar escopo sem necessidade.", "Nao ignorar criterio de aceite."],
+        inside: "A skill organiza o por que da mudanca antes de discutir arquivo ou codigo."
+      },
+      {
+        name: "sdd-prd-spec",
+        group: "SDD",
+        file: "skills/sdd-prd-spec/SKILL.md",
+        summary: "Converte PRD em especificacao tecnica.",
+        goal: "Transformar requisitos aprovados em plano tecnico por arquivo e validacao.",
+        when: "Use quando ja existe PRD e falta decidir como implementar.",
+        flow: ["Ler PRD.", "Mapear arquivos e dependencias.", "Definir criterios tecnicos.", "Planejar validacoes.", "Registrar riscos."],
+        output: ["Spec.md.", "Plano por arquivo.", "Criterios de validacao."],
+        guardrails: ["Nao criar arquitetura nao solicitada.", "Nao omitir riscos.", "Nao deixar criterio vago."],
+        inside: "A skill cria a ponte entre intencao de produto e execucao tecnica."
+      },
+      {
+        name: "sdd-spec-code",
+        group: "SDD",
+        file: "skills/sdd-spec-code/SKILL.md",
+        summary: "Implementa a Spec com escopo controlado.",
+        goal: "Executar exatamente a Spec com simplicidade, TDD e validacoes previstas.",
+        when: "Use quando a implementacao ja tem especificacao aprovada.",
+        flow: ["Ler Spec.", "Confirmar arquivos-alvo.", "Criar ou ajustar teste.", "Implementar.", "Validar e registrar evidencias."],
+        output: ["Itens implementados.", "Itens pendentes.", "Evidencias de teste.", "Como testar."],
+        guardrails: ["Nao resolver demanda paralela.", "Nao pular TDD.", "Nao ocultar falha de validacao."],
+        inside: "A skill mantem a implementacao pequena, verificavel e fiel ao plano tecnico."
+      },
+      {
+        name: "sdd-validacao",
+        group: "SDD",
+        file: "skills/sdd-validacao/SKILL.md",
+        summary: "Valida alinhamento, testes e risco.",
+        goal: "Decidir com evidencia se a entrega esta aprovada, aprovada com ressalvas ou reprovada.",
+        when: "Use no fechamento de uma entrega ou antes de publicacao.",
+        flow: ["Conferir PRD, Spec e codigo.", "Checar criterios.", "Revisar regressao e seguranca.", "Consolidar metricas.", "Perguntar por testes adicionais."],
+        output: ["Status final.", "Achados por severidade.", "Relatorio de testes.", "Risco residual."],
+        guardrails: ["Nao aprovar sem evidencia.", "Nao omitir lacuna.", "Nao encerrar sem checkpoint."],
+        inside: "A skill e o freio final: transforma 'parece pronto' em decisao baseada em evidencia."
+      },
+      {
+        name: "front-ux-ui-design",
+        group: "Especialista",
+        file: "skills/front-ux-ui-design/SKILL.md",
+        summary: "Conduz mudancas visuais e UX.",
+        goal: "Criar experiencias modernas, responsivas, acessiveis e alinhadas ao produto.",
+        when: "Use quando houver layout, tema, responsividade, interface ou experiencia visual.",
+        flow: ["Entender produto e publico.", "Apresentar 3 direcoes visuais.", "Aguardar escolha.", "Implementar com responsividade.", "Validar acessibilidade e regressao visual."],
+        output: ["3 propostas com links.", "Direcao escolhida.", "Decisoes de design.", "Evidencias visuais."],
+        guardrails: ["Nao implementar sem direcao aprovada.", "Nao copiar assets proprietarios.", "Nao concluir com overflow ou contraste ruim."],
+        inside: "A skill protege a qualidade visual: antes de editar, ela define a direcao e os criterios da experiencia."
+      },
+      {
+        name: "vps-easypanel",
+        group: "Especialista",
+        file: "skills/vps-easypanel/SKILL.md",
+        summary: "Apoia deploy e operacao em VPS/EasyPanel.",
+        goal: "Orientar infraestrutura Docker + EasyPanel com DNS, SSL, seguranca, logs e backup.",
+        when: "Use quando o assunto e deploy, dominio, proxy, SSL ou operacao em VPS.",
+        flow: ["Confirmar escopo de publicacao.", "Validar DNS e SSL.", "Checar seguranca do host.", "Checar runtime e segredos.", "Definir observabilidade e backup."],
+        output: ["Estado atual.", "Lacunas.", "Acoes priorizadas.", "Criterios de pronto."],
+        guardrails: ["Nao expor portas desnecessarias.", "Nao declarar ambiente seguro sem verificar.", "Nao incluir credenciais reais."],
+        inside: "A skill pensa como operacao: app no ar, dominio correto, minimo de seguranca e capacidade de diagnostico."
+      },
+      {
+        name: "github-flow",
+        group: "Publicacao",
+        file: "skills/github-flow/SKILL.md",
+        summary: "Organiza publicacao via GitHub.",
+        goal: "Conduzir branch, commit, push e PR com documentacao e checklist.",
+        when: "Use quando houver commit, push, PR ou publicacao.",
+        flow: ["Criar branch de trabalho.", "Revisar diff.", "Atualizar documentacao.", "Commitar.", "Abrir PR para main."],
+        output: ["Branch.", "Commit.", "PR.", "Checklist de publicacao."],
+        guardrails: ["Nao publicar sem revisao.", "Nao abrir PR fora da base correta.", "Nao omitir como testar."],
+        inside: "A skill transforma entrega local em publicacao rastreavel e revisavel."
+      }
+    ];
 
     function currentTheme() {
       return root.getAttribute("data-theme") === "dark" ? "dark" : "light";
@@ -1199,16 +1183,77 @@
       const next = theme === "dark" ? "dark" : "light";
       root.setAttribute("data-theme", next);
       localStorage.setItem(THEME_STORAGE_KEY, next);
-      themeToggle.innerHTML = next === "dark" ? "☀" : "☾";
+      themeToggle.innerHTML = next === "dark" ? sunIcon : moonIcon;
       themeToggle.setAttribute("aria-label", next === "dark" ? "Ativar tema claro" : "Ativar tema escuro");
       themeToggle.setAttribute("title", next === "dark" ? "Tema claro" : "Tema escuro");
     }
 
-    document.querySelectorAll("[data-scroll]").forEach((button) => {
-      button.addEventListener("click", () => {
-        document.getElementById(button.dataset.scroll)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    function setScenario(key) {
+      const scenario = scenarios[key] || scenarios.implementacao;
+      flowTitle.textContent = scenario.title;
+      flowText.textContent = scenario.text;
+      flowSteps.innerHTML = scenario.steps.map((step) => `<li>${step}</li>`).join("");
+      scenarioButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.scenario === key);
       });
-    });
+    }
+
+    function renderSkills() {
+      skillGrid.innerHTML = skills.map((skill) => `
+        <button class="skill-card" type="button" data-skill="${skill.name}" data-group="${skill.group}" data-search="${`${skill.name} ${skill.group} ${skill.summary} ${skill.goal} ${skill.when}`.toLowerCase()}">
+          <span class="tag">${skill.group}</span>
+          <h3>${skill.name}</h3>
+          <p>${skill.summary}</p>
+          <span class="open-hint">Abrir estrutura interna</span>
+        </button>
+      `).join("");
+    }
+
+    function selectedFilter() {
+      return filterButtons.find((button) => button.classList.contains("active"))?.dataset.filter || "Todas";
+    }
+
+    function filterSkills() {
+      const query = skillSearch.value.trim().toLowerCase();
+      const group = selectedFilter();
+      [...document.querySelectorAll(".skill-card")].forEach((card) => {
+        const matchesGroup = group === "Todas" || card.dataset.group === group;
+        const matchesQuery = !query || card.dataset.search.includes(query);
+        card.classList.toggle("hidden", !(matchesGroup && matchesQuery));
+      });
+    }
+
+    function fillList(elementId, items, ordered = false) {
+      const element = document.getElementById(elementId);
+      element.innerHTML = items.map((item) => `<li>${item}</li>`).join("");
+    }
+
+    function openModal(skillName) {
+      const skill = skills.find((item) => item.name === skillName);
+      if (!skill) return;
+      lastFocusedElement = document.activeElement;
+      document.getElementById("modalGroup").textContent = skill.group;
+      document.getElementById("modalTitle").textContent = skill.name;
+      document.getElementById("modalSummary").textContent = skill.summary;
+      document.getElementById("modalFile").textContent = skill.file;
+      document.getElementById("modalGoal").textContent = skill.goal;
+      document.getElementById("modalWhen").textContent = skill.when;
+      document.getElementById("modalInside").textContent = skill.inside;
+      fillList("modalFlow", skill.flow, true);
+      fillList("modalOutput", skill.output);
+      fillList("modalGuardrails", skill.guardrails);
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      modalDialog.focus();
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      lastFocusedElement?.focus();
+    }
 
     themeToggle.addEventListener("click", () => {
       setTheme(currentTheme() === "dark" ? "light" : "dark");
@@ -1220,14 +1265,44 @@
       }
     });
 
-    skillSearch.addEventListener("input", renderSkills);
+    scenarioButtons.forEach((button) => {
+      button.addEventListener("click", () => setScenario(button.dataset.scenario));
+    });
 
-    renderPhases();
-    renderFilters();
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach((item) => item.classList.toggle("active", item === button));
+        filterSkills();
+      });
+    });
+
+    skillGrid.addEventListener("click", (event) => {
+      const card = event.target.closest("[data-skill]");
+      if (card) openModal(card.dataset.skill);
+    });
+
+    skillSearch.addEventListener("input", filterSkills);
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("open")) {
+        closeModal();
+      }
+      if (!modal.classList.contains("open") && ["1", "2", "3", "4"].includes(event.key)) {
+        const target = scenarioButtons[Number(event.key) - 1];
+        if (target) {
+          target.focus();
+          setScenario(target.dataset.scenario);
+        }
+      }
+    });
+
     renderSkills();
-    renderPaths();
-    renderGates();
     setTheme(currentTheme());
+    setScenario("implementacao");
   </script>
 </body>
 </html>

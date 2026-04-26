@@ -9,6 +9,7 @@ const gamePath = 'game.html';
 const homePath = '/home';
 const appSource = readFileSync('src/App.vue', 'utf8');
 const indexSource = readFileSync('index.html', 'utf8');
+const gameSource = readFileSync(gamePath, 'utf8');
 const guideSource = readFileSync(docsPath, 'utf8');
 const nginxSource = readFileSync('nginx.conf', 'utf8');
 const progressStorageSource = readFileSync('src/lib/progressStorage.js', 'utf8');
@@ -61,6 +62,22 @@ if (!progressStorageSource.includes("THEME_STORAGE_KEY = 'skills-ui-theme:v1'"))
 
 if (!guideSource.includes('skills-ui-theme:v1')) {
   failures.push('Home precisa ler e salvar a chave compartilhada de tema.');
+}
+
+if (!guideSource.includes('id="skillModal"')) {
+  failures.push('Home precisa ter modal para abrir a estrutura interna das skills.');
+}
+
+if (!guideSource.includes('side-rail')) {
+  failures.push('Home precisa ter sidebar/rail de navegacao.');
+}
+
+if (!guideSource.includes('data-scenario')) {
+  failures.push('Home precisa manter playground interativo por cenario.');
+}
+
+if (!guideSource.includes('vlibras-plugin.js') || !gameSource.includes('vlibras-plugin.js') || !indexSource.includes('vlibras-plugin.js')) {
+  failures.push('VLibras precisa estar integrado nas entradas HTML do projeto.');
 }
 
 const normalized = normalizeProgress({

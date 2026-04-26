@@ -123,7 +123,7 @@ Antes:
 - Guia estatico/interativo em arquivo unico, sem persistencia de progresso.
 
 Depois:
-- Guia estatico publicado em `/home`, com visual refinado, tema compartilhado por `localStorage`, e app Vue em `game.html` com mapa lateral, instrucoes sempre visiveis, fases desbloqueadas e progresso salvo no navegador.
+- Guia estatico publicado em `/home`, com visual de command sidebar, playground por cenario, cards de skill abrindo modal, VLibras, tema compartilhado por `localStorage`, e app Vue em `game.html` com mapa lateral, instrucoes sempre visiveis, fases desbloqueadas e progresso salvo no navegador.
 
 ## Cenarios de Validacao
 
@@ -136,11 +136,15 @@ Depois:
 7. Clicar em `Docs` no game e confirmar retorno para `/home`.
 8. Alternar tema na Home e confirmar tema igual ao abrir Game.
 9. Alternar tema no Game e confirmar tema igual ao voltar para Home.
-10. Clicar nas fases e verificar atualizacao da agente e da missao.
-11. Concluir fase, recarregar pagina e confirmar progresso persistido.
-12. Usar `Reiniciar` e confirmar limpeza do progresso.
-13. Verificar responsividade por estrutura CSS.
-14. Procurar termos legados nos arquivos alterados.
+10. Usar busca/filtro do catalogo e confirmar que apenas cards do catalogo mudam.
+11. Abrir modal de uma skill e confirmar arquivo, objetivo, fluxo, saida e guardrails.
+12. Fechar modal por botao e por `Esc`.
+13. Confirmar widget VLibras na Home, no Game e na raiz de redirecionamento.
+14. Clicar nas fases do game e verificar atualizacao da agente e da missao.
+15. Concluir fase, recarregar pagina e confirmar progresso persistido.
+16. Usar `Reiniciar` e confirmar limpeza do progresso.
+17. Verificar responsividade por estrutura CSS.
+18. Procurar termos legados nos arquivos alterados.
 
 ## Criterios de Pronto
 
@@ -149,9 +153,12 @@ Depois:
 3. A URL `/home` abre o guia e o botao `Abrir jogo` abre `game.html`.
 4. Link `Docs` abre `/home` no build de producao.
 5. Tema claro/escuro e compartilhado entre Home e Game.
-6. Nao existem referencias ativas a outro projeto nos arquivos alterados.
-7. Validacoes locais planejadas foram executadas ou justificadas.
-8. A entrega inclui roteiro `como testar`.
+6. Home possui leitura guiada e catalogo filtravel sem paineis que mudam longe do clique.
+7. Cards de skill abrem modal acessivel com estrutura real resumida.
+8. VLibras esta integrado nas entradas HTML.
+9. Nao existem referencias ativas a outro projeto nos arquivos alterados.
+10. Validacoes locais planejadas foram executadas ou justificadas.
+11. A entrega inclui roteiro `como testar`.
 
 ## Estrategia TDD/Validacao
 

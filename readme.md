@@ -52,7 +52,7 @@ O build deve gerar `dist/index.html`, `dist/skills-workflow-guide.html` e `dist/
 - `src/data/gameContent.js`: fases, skills e instrucoes do jogo.
 - `index.html`: entrada raiz que direciona para o guia.
 - `game.html`: entrada Vite do jogo.
-- `skills-workflow-guide.html`: pagina estatica inicial servida em `/home`.
+- `skills-workflow-guide.html`: home estatica servida em `/home`, com sidebar, playground, catalogo com modais e VLibras.
 - `vite.config.js`: build multipagina para publicar o jogo e a pagina de docs.
 
 ## Docker
@@ -89,6 +89,7 @@ O `Dockerfile` nao define `HEALTHCHECK` interno. O container deve subir o Nginx 
 - Rota publica principal: `/home`
 - Rota do jogo: `/game.html`
 - Tema compartilhado entre Home e Game: `localStorage` na chave `skills-ui-theme:v1`
+- Acessibilidade: VLibras integrado nas entradas HTML do projeto.
 - `readme.md`: documentacao principal do projeto.
 - `skills-workflow-guide.html`: mapa interativo inicial para aprender o fluxo.
 - `PRD.md`: intencao de produto da entrega atual.
@@ -209,11 +210,15 @@ Retorno esperado:
 4. Em producao, abra `/home` e confirme que a home aparece sem `.html`.
 5. Clique em `Abrir jogo` e confirme que `game.html` abre.
 6. Altere o tema na Home ou no Game e confirme que a escolha continua ao trocar de pagina.
-7. Clique nas fases do mapa lateral.
-8. Use `Proxima fase` e `Concluir fase`.
-9. Recarregue a pagina e confirme que o progresso foi mantido.
-10. Use `Reiniciar` e confirme que o progresso volta ao inicio.
-11. Reduza a largura da janela e confirme que a interface continua legivel.
+7. Use a busca/filtro do catalogo e confirme que apenas os cards do catalogo mudam.
+8. Clique em um card de skill e confirme que o modal abre com objetivo, fluxo, contrato, guardrails e arquivo `SKILL.md`.
+9. Use `Esc` para fechar o modal.
+10. Confirme que o widget VLibras aparece na Home e no Game.
+11. Clique nas fases do mapa lateral do Game.
+12. Use `Proxima fase` e `Concluir fase`.
+13. Recarregue a pagina e confirme que o progresso foi mantido.
+14. Use `Reiniciar` e confirme que o progresso volta ao inicio.
+15. Reduza a largura da janela e confirme que a interface continua legivel.
 
 ### API
 

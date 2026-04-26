@@ -10,8 +10,8 @@ O guia atual ainda contem referencias legadas de outro projeto e descreve parte 
 
 1. A identidade do projeto precisa ser apenas `Skills`.
 2. A documentacao precisa explicar cada skill, gate e caminho operacional com linguagem objetiva.
-3. O guia visual precisa deixar de parecer apenas uma pagina estatica.
-4. A experiencia deve ensinar por interacao: clicar, navegar por fases e entender o fluxo passo a passo.
+3. O guia visual precisa parecer uma home de produto clara, elegante e facil de navegar.
+4. A experiencia deve ensinar por leitura guiada, cards completos e interacoes previsiveis.
 5. O progresso precisa ficar salvo no cache local do usuario de forma controlada e limpa.
 
 ## Objetivo
@@ -47,7 +47,7 @@ Transformar a documentacao do projeto `Skills` em uma experiencia didatica e int
 2. Frontend atual: Vue 3, Vite, Pinia, HTML, CSS e JavaScript.
 3. Documentacao principal: `readme.md`.
 4. Persistencia: `localStorage` versionado no navegador.
-5. Direcao visual aprovada: side-scroller de fases inspirado em jogos de plataforma, sem copiar assets proprietarios.
+5. Direcao visual aprovada para a Home: centro de comando inspirado em Raycast, sem copiar assets proprietarios.
 
 ## Areas Impactadas
 
@@ -64,7 +64,7 @@ Transformar a documentacao do projeto `Skills` em uma experiencia didatica e int
 
 1. O app deve apresentar uma jornada por fases com progresso visual.
 2. O usuario deve conseguir selecionar fases e ver conteudo especifico.
-3. O usuario deve conseguir selecionar skills e visualizar objetivo, quando usar, retorno esperado e formato de retorno.
+3. O usuario deve conseguir encontrar skills por busca/filtro e ler objetivo, quando usar e retorno esperado no proprio card.
 4. O guia deve apresentar gates operacionais de forma visual.
 5. O guia deve mostrar caminhos comuns: entender contexto, implementar mudanca, mudar frontend, validar qualidade e publicar.
 6. O README deve explicar o projeto, estrutura, stack, como abrir e como validar.
@@ -75,6 +75,10 @@ Transformar a documentacao do projeto `Skills` em uma experiencia didatica e int
 11. A opcao de tema deve ser compartilhada entre Home e Game via `localStorage`.
 12. O controle de tema deve usar icone de lua/sol, sem texto `Tema`.
 13. A Home deve manter apenas dois CTAs principais: `Abrir jogo` e `Ver catalogo`.
+14. A Home deve evitar cliques que alteram conteudo distante do ponto de interacao.
+15. A Home deve permitir abrir uma skill em modal com sua estrutura interna real.
+16. O projeto deve integrar VLibras nas entradas HTML.
+17. A Home deve ter sidebar/rail e suporte a interacoes por mouse e teclado.
 
 ## Requisitos Nao Funcionais
 
@@ -89,12 +93,15 @@ Transformar a documentacao do projeto `Skills` em uma experiencia didatica e int
 
 1. `readme.md` apresenta o projeto como `Skills`, sem acoplamento a outro produto.
 2. O app Vue oferece interacao por fases em mapa lateral.
-3. Cada skill listada tem objetivo, acionamento, retorno esperado e formato de retorno.
-4. Os gates principais estao explicados em linguagem acessivel.
-5. O app roda com `npm run dev` e gera build com `npm run build`.
-6. O build de producao inclui `skills-workflow-guide.html` e `game.html`, e o Nginx publica `/home` sem 404.
-7. Busca textual por termos legados de projeto nao encontra referencias ativas nos arquivos alterados.
-8. `npm test` valida dados basicos do jogo, normalizacao do progresso, rota `/home` e tema compartilhado.
+3. A Home apresenta jornada, catalogo, caminhos e gates sem depender de conteudo escondido.
+4. Cada skill listada tem objetivo, acionamento e retorno esperado no proprio card.
+5. O modal da skill mostra arquivo, objetivo, quando usar, fluxo, contrato de saida e guardrails.
+6. VLibras esta presente nas entradas HTML do projeto.
+7. Os gates principais estao explicados em linguagem acessivel.
+8. O app roda com `npm run dev` e gera build com `npm run build`.
+9. O build de producao inclui `skills-workflow-guide.html` e `game.html`, e o Nginx publica `/home` sem 404.
+10. Busca textual por termos legados de projeto nao encontra referencias ativas nos arquivos alterados.
+11. `npm test` valida dados basicos do jogo, normalizacao do progresso, rota `/home`, tema compartilhado, modais e VLibras.
 
 ## Riscos e Duvidas
 

@@ -75,8 +75,11 @@ Acesse em: http://localhost:8080
 
 2. No EasyPanel:
    - Container image: `registry.seu-dominio.com/skills-codex`
-   - Port: `80`
-   - Health check: `/health`
+   - Port interna HTTP: `80`
+   - Health check do painel, se habilitado: `/` ou `/health`
+   - Variaveis de ambiente: nao obrigatorias para servir o frontend estatico
+
+O `Dockerfile` nao define `HEALTHCHECK` interno. O container deve subir o Nginx diretamente na porta `80`, deixando a validacao de saude sob responsabilidade do EasyPanel/proxy.
 - `readme.md`: documentacao principal do projeto.
 - `skills-workflow-guide.html`: mapa interativo para aprender o fluxo.
 - `PRD.md`: intencao de produto da entrega atual.

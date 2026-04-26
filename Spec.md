@@ -48,9 +48,10 @@ Por que:
 O que alterar:
 - Publicar `index.html` e `skills-workflow-guide.html` no build de producao.
 - Publicar `game.html` como entrada do jogo Vue.
+- Servir `/home` no Nginx como rota limpa do guia.
 
 Por que:
-- A home precisa abrir o guia, o botao `Abrir jogo` precisa abrir o game e o botao `Docs` precisa voltar para a documentacao sem 404 no Nginx/EasyPanel.
+- A home precisa abrir o guia em `/home`, o botao `Abrir jogo` precisa abrir o game e o botao `Docs` precisa voltar para a documentacao sem 404 no Nginx/EasyPanel.
 
 ### `index.html`
 
@@ -58,7 +59,7 @@ O que alterar:
 - Direcionar a entrada raiz para `skills-workflow-guide.html`.
 
 Por que:
-- Ao abrir a URL publica, a primeira pagina deve ser o guia.
+- Ao abrir a URL publica, a primeira pagina deve levar para `/home`.
 
 ### `game.html`
 
@@ -122,32 +123,35 @@ Antes:
 - Guia estatico/interativo em arquivo unico, sem persistencia de progresso.
 
 Depois:
-- Guia estatico como home do site e app Vue em `game.html` com mapa lateral, instrucoes sempre visiveis, fases desbloqueadas e progresso salvo no navegador.
+- Guia estatico publicado em `/home`, com visual refinado, tema compartilhado por `localStorage`, e app Vue em `game.html` com mapa lateral, instrucoes sempre visiveis, fases desbloqueadas e progresso salvo no navegador.
 
 ## Cenarios de Validacao
 
 1. Rodar `npm test`.
 2. Rodar `npm run build`.
 3. Confirmar que `dist/skills-workflow-guide.html` e `dist/game.html` foram gerados.
-4. Rodar `npm run dev`.
-5. Abrir `/` e confirmar que a pagina inicial e o guia.
+4. Rodar preview/build local quando aplicavel.
+5. Em producao Nginx, abrir `/home` e confirmar que a pagina inicial e o guia.
 6. Clicar em `Abrir jogo` e confirmar que `game.html` abre sem 404.
-7. Clicar em `Docs` no game e confirmar que a pagina estatica abre sem 404.
-8. Clicar nas fases e verificar atualizacao da agente e da missao.
-9. Concluir fase, recarregar pagina e confirmar progresso persistido.
-10. Usar `Reiniciar` e confirmar limpeza do progresso.
-11. Verificar responsividade por estrutura CSS.
-12. Procurar termos legados nos arquivos alterados.
+7. Clicar em `Docs` no game e confirmar retorno para `/home`.
+8. Alternar tema na Home e confirmar tema igual ao abrir Game.
+9. Alternar tema no Game e confirmar tema igual ao voltar para Home.
+10. Clicar nas fases e verificar atualizacao da agente e da missao.
+11. Concluir fase, recarregar pagina e confirmar progresso persistido.
+12. Usar `Reiniciar` e confirmar limpeza do progresso.
+13. Verificar responsividade por estrutura CSS.
+14. Procurar termos legados nos arquivos alterados.
 
 ## Criterios de Pronto
 
 1. `readme.md` explica o projeto `Skills` e como validar.
 2. App Vue possui interacao funcional e persistencia local.
-3. A URL raiz abre o guia e o botao `Abrir jogo` abre `game.html`.
-4. Link `Docs` abre `skills-workflow-guide.html` no build de producao.
-5. Nao existem referencias ativas a outro projeto nos arquivos alterados.
-6. Validacoes locais planejadas foram executadas ou justificadas.
-7. A entrega inclui roteiro `como testar`.
+3. A URL `/home` abre o guia e o botao `Abrir jogo` abre `game.html`.
+4. Link `Docs` abre `/home` no build de producao.
+5. Tema claro/escuro e compartilhado entre Home e Game.
+6. Nao existem referencias ativas a outro projeto nos arquivos alterados.
+7. Validacoes locais planejadas foram executadas ou justificadas.
+8. A entrega inclui roteiro `como testar`.
 
 ## Estrategia TDD/Validacao
 

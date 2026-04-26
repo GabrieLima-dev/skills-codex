@@ -6,10 +6,12 @@ const failures = [];
 const stageIds = stages.map((stage) => stage.id);
 const docsPath = 'skills-workflow-guide.html';
 const gamePath = 'game.html';
+const homePath = '/home';
 const appSource = readFileSync('src/App.vue', 'utf8');
 const indexSource = readFileSync('index.html', 'utf8');
 const guideSource = readFileSync(docsPath, 'utf8');
 const nginxSource = readFileSync('nginx.conf', 'utf8');
+const progressStorageSource = readFileSync('src/lib/progressStorage.js', 'utf8');
 
 if (stages.length < 6) failures.push('A jornada precisa ter pelo menos 6 fases.');
 if (new Set(stageIds).size !== stageIds.length) failures.push('IDs de fase devem ser unicos.');
@@ -33,20 +35,32 @@ if (!existsSync(gamePath)) {
   failures.push('Pagina do game precisa existir como game.html.');
 }
 
-if (!appSource.includes(`href="${docsPath}"`)) {
-  failures.push('Link Docs do app precisa apontar para skills-workflow-guide.html.');
+if (!appSource.includes(`href="${homePath}"`)) {
+  failures.push('Link Docs do app precisa apontar para /home.');
 }
 
-if (!indexSource.includes(docsPath)) {
-  failures.push('index.html precisa abrir o guia skills-workflow-guide.html.');
+if (!indexSource.includes(homePath)) {
+  failures.push('index.html precisa abrir /home.');
 }
 
 if (!guideSource.includes(`href="${gamePath}"`)) {
   failures.push('Botao Abrir jogo do guia precisa apontar para game.html.');
 }
 
-if (!nginxSource.includes('index skills-workflow-guide.html index.html;')) {
-  failures.push('Nginx precisa servir skills-workflow-guide.html como indice da raiz.');
+if (!nginxSource.includes('location = /home')) {
+  failures.push('Nginx precisa publicar a rota limpa /home.');
+}
+
+if (!nginxSource.includes('return 301 /home;')) {
+  failures.push('Nginx precisa redirecionar skills-workflow-guide.html para /home.');
+}
+
+if (!progressStorageSource.includes("THEME_STORAGE_KEY = 'skills-ui-theme:v1'")) {
+  failures.push('Tema precisa usar chave compartilhada skills-ui-theme:v1.');
+}
+
+if (!guideSource.includes('skills-ui-theme:v1')) {
+  failures.push('Home precisa ler e salvar a chave compartilhada de tema.');
 }
 
 const normalized = normalizeProgress({

@@ -9,7 +9,7 @@ O objetivo e mostrar, de forma clara e pratica, como cada skill funciona, quando
 - Frontend: Vue 3, Vite, Pinia, HTML, CSS e JavaScript.
 - Backend: nao aplicavel nesta entrega.
 - Docs: este `readme.md`.
-- Home/documentacao visual: `skills-workflow-guide.html`.
+- Home/documentacao visual: `/home` servindo `skills-workflow-guide.html`.
 - App principal do jogo: `game.html`.
 
 O projeto agora possui uma experiencia de jogo lateral para ensinar o fluxo das Skills e salva progresso no cache local do navegador.
@@ -40,7 +40,7 @@ Gere build de producao:
 npm run build
 ```
 
-O build deve gerar `dist/index.html`, `dist/skills-workflow-guide.html` e `dist/game.html`. Ao abrir `/`, o usuario deve ser levado para o guia; o botao `Abrir jogo` abre `game.html`.
+O build deve gerar `dist/index.html`, `dist/skills-workflow-guide.html` e `dist/game.html`. Em producao, o Nginx publica a home limpa em `/home`; o botao `Abrir jogo` abre `game.html`.
 
 ## Estrutura
 
@@ -52,7 +52,7 @@ O build deve gerar `dist/index.html`, `dist/skills-workflow-guide.html` e `dist/
 - `src/data/gameContent.js`: fases, skills e instrucoes do jogo.
 - `index.html`: entrada raiz que direciona para o guia.
 - `game.html`: entrada Vite do jogo.
-- `skills-workflow-guide.html`: pagina estatica inicial aberta ao acessar o site.
+- `skills-workflow-guide.html`: pagina estatica inicial servida em `/home`.
 - `vite.config.js`: build multipagina para publicar o jogo e a pagina de docs.
 
 ## Docker
@@ -86,6 +86,9 @@ Acesse em: http://localhost:8080
    - Variaveis de ambiente: nao obrigatorias para servir o frontend estatico
 
 O `Dockerfile` nao define `HEALTHCHECK` interno. O container deve subir o Nginx diretamente na porta `80`, deixando a validacao de saude sob responsabilidade do EasyPanel/proxy.
+- Rota publica principal: `/home`
+- Rota do jogo: `/game.html`
+- Tema compartilhado entre Home e Game: `localStorage` na chave `skills-ui-theme:v1`
 - `readme.md`: documentacao principal do projeto.
 - `skills-workflow-guide.html`: mapa interativo inicial para aprender o fluxo.
 - `PRD.md`: intencao de produto da entrega atual.
@@ -203,11 +206,14 @@ Retorno esperado:
 1. Rode `npm install`.
 2. Rode `npm run dev`.
 3. Abra a URL local exibida pelo Vite.
-4. Clique nas fases do mapa lateral.
-5. Use `Proxima fase` e `Concluir fase`.
-6. Recarregue a pagina e confirme que o progresso foi mantido.
-7. Use `Reiniciar` e confirme que o progresso volta ao inicio.
-8. Reduza a largura da janela e confirme que a interface continua legivel.
+4. Em producao, abra `/home` e confirme que a home aparece sem `.html`.
+5. Clique em `Abrir jogo` e confirme que `game.html` abre.
+6. Altere o tema na Home ou no Game e confirme que a escolha continua ao trocar de pagina.
+7. Clique nas fases do mapa lateral.
+8. Use `Proxima fase` e `Concluir fase`.
+9. Recarregue a pagina e confirme que o progresso foi mantido.
+10. Use `Reiniciar` e confirme que o progresso volta ao inicio.
+11. Reduza a largura da janela e confirme que a interface continua legivel.
 
 ### API
 

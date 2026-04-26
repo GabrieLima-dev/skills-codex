@@ -1,7 +1,7 @@
 import { computed, ref, watch } from 'vue';
 import { defineStore } from 'pinia';
 import { stages } from '../data/gameContent';
-import { defaultProgress, loadProgress, saveProgress } from '../lib/progressStorage';
+import { defaultProgress, loadProgress, loadTheme, saveProgress, saveTheme, THEME_STORAGE_KEY } from '../lib/progressStorage';
 
 const stageIds = stages.map((stage) => stage.id);
 
@@ -10,7 +10,7 @@ export const useProgressStore = defineStore('progress', () => {
   const saved = loadProgress(storage, stageIds);
   const currentStageId = ref(saved.currentStageId);
   const completedStageIds = ref(saved.completedStageIds);
-  const theme = ref(saved.theme);
+  const theme = ref(loadTheme(storage, saved.theme));
 
   const currentIndex = computed(() => Math.max(0, stageIds.indexOf(currentStageId.value)));
   const currentStage = computed(() => stages[currentIndex.value] || stages[0]);
@@ -44,6 +44,16 @@ export const useProgressStore = defineStore('progress', () => {
     theme.value = theme.value === 'dark' ? 'light' : 'dark';
   }
 
+  function handleThemeStorage(event) {
+    if (event.key === THEME_STORAGE_KEY && event.newValue) {
+      theme.value = loadTheme(storage, theme.value);
+    }
+  }
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener('storage', handleThemeStorage);
+  }
+
   watch(
     [currentStageId, completedStageIds, theme],
     () => saveProgress(storage, {
@@ -54,6 +64,8 @@ export const useProgressStore = defineStore('progress', () => {
     }),
     { deep: true }
   );
+
+  watch(theme, () => saveTheme(storage, theme.value), { immediate: true });
 
   return {
     currentStageId,

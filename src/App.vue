@@ -80,9 +80,15 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown));
       </section>
 
       <nav class="hud-actions" aria-label="Acoes do jogo">
-        <a href="skills-workflow-guide.html">Docs</a>
-        <button type="button" @click="progress.toggleTheme">
-          {{ theme === 'dark' ? 'Tema claro' : 'Tema escuro' }}
+        <a href="/home">Docs</a>
+        <button
+          type="button"
+          class="icon-button"
+          :aria-label="theme === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro'"
+          :title="theme === 'dark' ? 'Tema claro' : 'Tema escuro'"
+          @click="progress.toggleTheme"
+        >
+          <span aria-hidden="true">{{ theme === 'dark' ? '☀' : '☾' }}</span>
         </button>
         <button type="button" @click="progress.resetProgress">Reiniciar</button>
       </nav>

@@ -1,4 +1,5 @@
 export const STORAGE_KEY = 'skills-game-progress:v1';
+export const THEME_STORAGE_KEY = 'skills-ui-theme:v1';
 
 export const defaultProgress = {
   version: 1,
@@ -41,4 +42,16 @@ export function saveProgress(storage, progress) {
     ...progress,
     lastPlayedAt: new Date().toISOString()
   }));
+}
+
+export function normalizeTheme(value) {
+  return value === 'dark' ? 'dark' : 'light';
+}
+
+export function loadTheme(storage, fallback = defaultProgress.theme) {
+  return normalizeTheme(storage?.getItem(THEME_STORAGE_KEY) || fallback);
+}
+
+export function saveTheme(storage, theme) {
+  storage?.setItem(THEME_STORAGE_KEY, normalizeTheme(theme));
 }

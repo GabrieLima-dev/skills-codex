@@ -188,6 +188,13 @@ a:focus-visible {
   font-weight: 760;
 }
 
+.hud-actions .icon-button {
+  width: 40px;
+  min-width: 40px;
+  padding: 8px;
+  font-size: 1.05rem;
+}
+
 .hud-actions a:hover,
 .hud-actions button:hover,
 .mission-actions button:hover {

@@ -69,9 +69,12 @@ Transformar a documentacao do projeto `Skills` em uma experiencia didatica e int
 5. O guia deve mostrar caminhos comuns: entender contexto, implementar mudanca, mudar frontend, validar qualidade e publicar.
 6. O README deve explicar o projeto, estrutura, stack, como abrir e como validar.
 7. O progresso deve persistir apos recarregar a pagina.
-8. A URL raiz deve abrir o guia `skills-workflow-guide.html`.
+8. A URL limpa `/home` deve abrir o guia `skills-workflow-guide.html`.
 9. O botao `Abrir jogo` do guia deve abrir o game em `game.html`.
-10. O botao `Docs` dentro do game deve retornar para a documentacao estatica.
+10. O botao `Docs` dentro do game deve retornar para `/home`.
+11. A opcao de tema deve ser compartilhada entre Home e Game via `localStorage`.
+12. O controle de tema deve usar icone de lua/sol, sem texto `Tema`.
+13. A Home deve manter apenas dois CTAs principais: `Abrir jogo` e `Ver catalogo`.
 
 ## Requisitos Nao Funcionais
 
@@ -89,9 +92,9 @@ Transformar a documentacao do projeto `Skills` em uma experiencia didatica e int
 3. Cada skill listada tem objetivo, acionamento, retorno esperado e formato de retorno.
 4. Os gates principais estao explicados em linguagem acessivel.
 5. O app roda com `npm run dev` e gera build com `npm run build`.
-6. O build de producao inclui `skills-workflow-guide.html` e `game.html` para evitar 404 nos links de guia e jogo.
+6. O build de producao inclui `skills-workflow-guide.html` e `game.html`, e o Nginx publica `/home` sem 404.
 7. Busca textual por termos legados de projeto nao encontra referencias ativas nos arquivos alterados.
-8. `npm test` valida dados basicos do jogo, normalizacao do progresso e existencia do link de docs.
+8. `npm test` valida dados basicos do jogo, normalizacao do progresso, rota `/home` e tema compartilhado.
 
 ## Riscos e Duvidas
 

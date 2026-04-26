@@ -29,7 +29,7 @@ scripts/
 # Configs de desenvolvimento
 .env
 .env.*
-vite.config.js
+# vite.config.js - NECESSÁRIO para o build!
 
 # Imagens e assets externos
 *.png

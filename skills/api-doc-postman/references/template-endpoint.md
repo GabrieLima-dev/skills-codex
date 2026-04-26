@@ -29,3 +29,9 @@
 - Regras inferidas:
 - Conflitos:
 - Risco (crítico/alto/médio/baixo):
+
+## Notas de Padronização
+
+- Este template é preenchido a partir do backend/OpenAPI atual.
+- Evitar solicitar ao usuário detalhes técnicos do endpoint quando o código já fornece a resposta.
+- O objetivo do usuário nesta skill é informar apenas identidade do projeto (cores e dados institucionais).

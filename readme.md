@@ -1,0 +1,186 @@
+# Skills
+
+`Skills` e um projeto de documentacao e aprendizado sobre agentes orientados por skills.
+
+O objetivo e mostrar, de forma clara e pratica, como cada skill funciona, quando ela deve ser acionada, quais gates protegem a execucao e o que a agente deve retornar em cada etapa.
+
+## O Que Existe Hoje
+
+- Frontend: Vue 3, Vite, Pinia, HTML, CSS e JavaScript.
+- Backend: nao aplicavel nesta entrega.
+- Docs: este `readme.md`.
+- App principal do jogo: `index.html`.
+- Guia visual legado/apoio: `skills-workflow-guide.html`.
+
+O projeto agora possui uma experiencia de jogo lateral para ensinar o fluxo das Skills e salva progresso no cache local do navegador.
+
+## Como Abrir
+
+Instale as dependencias:
+
+```bash
+npm install
+```
+
+Rode o app:
+
+```bash
+npm run dev
+```
+
+Valide a estrutura de jogo:
+
+```bash
+npm test
+```
+
+Gere build de producao:
+
+```bash
+npm run build
+```
+
+## Estrutura
+
+- `AGENTS.md`: regras operacionais que a agente deve seguir.
+- `skills/`: catalogo das skills e seus arquivos `SKILL.md`.
+- `src/`: app Vue do jogo interativo.
+- `src/stores/progress.js`: store Pinia do progresso.
+- `src/lib/progressStorage.js`: persistencia local versionada.
+- `src/data/gameContent.js`: fases, skills e instrucoes do jogo.
+- `readme.md`: documentacao principal do projeto.
+- `skills-workflow-guide.html`: mapa interativo para aprender o fluxo.
+- `PRD.md`: intencao de produto da entrega atual.
+- `Spec.md`: especificacao tecnica da entrega atual.
+
+## Como Uma Skill Deve Ser Entendida
+
+Cada skill deve responder quatro perguntas simples:
+
+1. Objetivo: para que ela existe.
+2. Quando usar: qual pedido ou contexto aciona a skill.
+3. O que fazer: quais passos ela exige.
+4. O que retornar: qual evidencia ou resultado precisa aparecer no final.
+
+## Blocos Operacionais
+
+### 1. Prontidao e Contexto
+
+- `project-readiness-gate`: bloqueia execucao se faltar stack, contexto ou triade obrigatoria.
+- `context`: entende o estado real do codigo e separa fato, risco e hipotese.
+
+Retorno esperado:
+- status do gate;
+- campos completos e ausentes;
+- evidencias por arquivo;
+- proximo passo seguro.
+
+### 2. Orquestracao SDD
+
+- `sdd-sprint-orquestracao`: controla plano, aprovacao, autorizacao e fluxo ponta a ponta.
+- `sdd-pesquisa-prd`: transforma pedido em PRD.
+- `sdd-prd-spec`: transforma PRD em Spec tecnica.
+- `sdd-spec-code`: implementa a Spec com escopo controlado.
+- `sdd-validacao`: valida alinhamento entre PRD, Spec, codigo e evidencias.
+
+Retorno esperado:
+- plano estruturado;
+- PRD;
+- Spec;
+- implementacao rastreada;
+- relatorio de testes, metricas e risco residual.
+
+### 3. Especialistas
+
+- `front-ux-ui-design`: conduz mudancas visuais/frontend com 3 propostas e aprovacao.
+- `api-doc-postman`: sincroniza contrato OpenAPI e documentacao de API.
+- `data-model`: apoia arquitetura de dados e DER.
+- `vps-easypanel`: apoia deploy e operacao em VPS/EasyPanel.
+
+Retorno esperado:
+- decisao tecnica ou visual;
+- arquivos impactados;
+- trade-offs;
+- validacoes aplicaveis.
+
+### 4. Qualidade, Publicacao e Evolucao
+
+- `code-review`: revisa bugs, seguranca, qualidade e regressao.
+- `github-flow`: organiza branch, commit, push e PR.
+- `aprendizado-profundo`: propõe melhorias de processo com aprovacao explicita.
+
+Retorno esperado:
+- achados por severidade;
+- checklist de publicacao;
+- PR documentado;
+- proposta de melhoria quando aplicavel.
+
+## Gates Principais
+
+- Gate de prontidao: antes de qualquer execucao.
+- Gate de plano: sem plano aprovado, nada deve ser executado.
+- Gate de comando explicito: mesmo com plano aprovado, a execucao so comeca apos autorizacao clara.
+- Gate UX/UI: mudanca visual exige exatamente 3 propostas com links e aprovacao.
+- Gate de validacao: entrega precisa de testes, metricas, lacunas e risco residual.
+- Gate de publicacao: commit, push ou PR exigem revisao e rastreabilidade.
+
+## Caminhos Comuns
+
+### Entender Um Projeto
+
+1. `project-readiness-gate`
+2. `context`
+3. resposta com fatos, riscos, hipoteses e proximo passo
+
+### Implementar Uma Mudanca
+
+1. `project-readiness-gate`
+2. `sdd-sprint-orquestracao`
+3. `sdd-pesquisa-prd`
+4. `sdd-prd-spec`
+5. `sdd-spec-code`
+6. `sdd-validacao`
+
+### Alterar Frontend Visual
+
+1. `project-readiness-gate`
+2. `sdd-sprint-orquestracao`
+3. `front-ux-ui-design`
+4. aprovacao de uma direcao visual
+5. implementacao e validacao responsiva
+
+### Publicar
+
+1. `code-review`
+2. `github-flow`
+3. branch de trabalho
+4. commit
+5. push
+6. PR para `main`
+
+## Como Testar Esta Entrega
+
+### Front
+
+1. Rode `npm install`.
+2. Rode `npm run dev`.
+3. Abra a URL local exibida pelo Vite.
+4. Clique nas fases do mapa lateral.
+5. Use `Proxima fase` e `Concluir fase`.
+6. Recarregue a pagina e confirme que o progresso foi mantido.
+7. Use `Reiniciar` e confirme que o progresso volta ao inicio.
+8. Reduza a largura da janela e confirme que a interface continua legivel.
+
+### API
+
+Nao aplicavel nesta entrega. O progresso e salvo no navegador via `localStorage`, sem backend real.
+
+## Validacoes Recomendadas
+
+```bash
+rg -n "termo-legado-do-projeto-anterior" readme.md skills-workflow-guide.html PRD.md Spec.md
+npm test
+npm run build
+```
+
+O comando nao deve retornar referencias ativas aos termos legados nos arquivos alterados.

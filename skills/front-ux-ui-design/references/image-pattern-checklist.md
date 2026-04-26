@@ -26,5 +26,16 @@ Quando o usuário enviar imagem de referência, extrair e reportar:
 - Estados hover/focus/active
 - Padrão de transição e motion
 
+7. Produto e intenção
+- Qual público a interface parece atender
+- Qual ação principal parece ser priorizada
+- Qual percepção a direção visual transmite (premium, técnica, editorial, operacional, experimental)
+
+8. Riscos de adaptação
+- Elementos que podem conflitar com o design atual
+- Elementos com risco de acessibilidade, contraste ou responsividade
+- Partes que exigiriam biblioteca, asset ou técnica ainda não aprovada
+
 ## Regra obrigatória
-- Antes de implementar, confirmar com o usuário: "é este padrão visual que você deseja replicar?"
+- Antes de implementar, confirmar com o usuário: "é este padrão visual que você deseja seguir?"
+- Recriar linguagem visual e estrutura de experiência sem copiar assets, marca, textos proprietários ou layout exato.

@@ -1,4 +1,4 @@
-# Skills Governance v4.2
+# Skills Governance v4.3
 
 Este diretório centraliza o framework de confiabilidade das skills.
 
@@ -53,3 +53,4 @@ Garantir que as skills permaneçam consistentes, testáveis, auditáveis e segur
 - Tratar ausência de acionamento da `code-review` em pedidos de teste/validação/publicação como falha de processo.
 - Tratar alteração sem atualização de `readme.md` no repositório impactado como falha de documentação.
 - Tratar alteração em `skills/` ou `AGENTS.md` sem atualização de `doc_skills/readme.md` e `doc_skills/skills-workflow-guide.html` como falha de rastreabilidade documental.
+- Tratar documentação de API fora do padrão fixo `docs-portal-cliente` (layout/UX/funções) como desvio de padronização quando a skill `api-doc-postman` for acionada.

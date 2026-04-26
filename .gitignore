@@ -1,2 +1,5 @@
 .DS_Store
 gitchein.md
+node_modules/
+dist/
+.vite/

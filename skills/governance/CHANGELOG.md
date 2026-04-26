@@ -1,5 +1,21 @@
 # Changelog - Skills Governance
 
+## [4.4.0] - 2026-04-25
+
+### Changed
+
+- Governança alinhada à evolução da `front-ux-ui-design` como skill especialista de frontend/UI/UX.
+- Mantido bloqueio operacional para mudanças frontend visual/layout/theme/responsividade/UX sem exatamente 3 propostas de direção visual com links clicáveis no plano.
+- Documentação de governança reforçada para preservar aprovação explícita, benchmark visual, acessibilidade, responsividade e não cópia de referências proprietárias.
+- Pacote documental `doc_skills/readme.md` e `doc_skills/skills-workflow-guide.html` criado/sincronizado para rastrear a atualização.
+
+## [4.3.0] - 2026-04-09
+
+### Changed
+
+- Governança alinhada ao novo contrato da `api-doc-postman`: padrão fixo de `docs-portal-cliente` para documentação de API com variação restrita a identidade do projeto e endpoints reais.
+- Documentação de governança atualizada para explicitar preservação de layout/UX/funções no fluxo de docs de API.
+
 ## [4.2.0] - 2026-03-14
 
 ### Changed

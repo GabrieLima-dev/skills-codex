@@ -1,6 +1,6 @@
 # Métricas de Qualidade de Skills
 
-Data de geração: `2026-03-14T19:37:11-03:00`
+Data de geração: `2026-04-25T14:47:20-03:00`
 Base analisada: `skills`
 
 ## Rubrica
@@ -46,9 +46,9 @@ Base analisada: `skills`
 - [x] Critério de decisão
 - Referências: 100/100
 - references/: presente
-- arquivos .md: 2
-- arquivos não vazios: 2/2
-- arquivos com seções H2: 2/2
+- arquivos .md: 3
+- arquivos não vazios: 3/3
+- arquivos com seções H2: 3/3
 
 ### aprendizado-profundo
 

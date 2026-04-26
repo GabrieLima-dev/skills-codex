@@ -1,0 +1,522 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #17202a;
+  background: #eaf2f0;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(35, 104, 216, 0.42);
+  outline-offset: 3px;
+}
+
+.game-app {
+  --bg: #eaf2f0;
+  --panel: #fffdf7;
+  --panel-2: #f1efe3;
+  --text: #17202a;
+  --muted: #5c6a72;
+  --line: #cfdad7;
+  --blue: #2368d8;
+  --green: #15805f;
+  --amber: #c97814;
+  --red: #c24d4d;
+  --shadow: 0 18px 42px rgba(20, 32, 40, 0.15);
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto minmax(420px, 1fr) auto;
+  gap: 12px;
+  padding: 14px;
+  color: var(--text);
+  background:
+    linear-gradient(180deg, rgba(35, 104, 216, 0.12), transparent 36%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.45) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.45) 1px, transparent 1px),
+    var(--bg);
+  background-size: auto, 34px 34px, 34px 34px, auto;
+}
+
+.game-app[data-theme="dark"] {
+  --bg: #10161d;
+  --panel: #17202a;
+  --panel-2: #202d38;
+  --text: #f5f7f9;
+  --muted: #afbdc8;
+  --line: #344652;
+  --blue: #78a8ff;
+  --green: #67d0aa;
+  --amber: #ffc46c;
+  --red: #ff8f8f;
+  --shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+}
+
+.hud,
+.play-layout,
+.bottom-dock {
+  width: min(1500px, 100%);
+  margin: 0 auto;
+}
+
+.hud {
+  min-height: 76px;
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) auto auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.brand,
+.scoreboard,
+.hud-actions,
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--panel) 94%, transparent);
+  box-shadow: var(--shadow);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 76px;
+  padding: 12px;
+}
+
+.brand-mark {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+.brand p,
+.brand h1,
+.panel h2,
+.panel p {
+  margin: 0;
+}
+
+.brand p,
+.panel-kicker {
+  color: var(--green);
+  font-size: 0.74rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brand h1 {
+  margin-top: 3px;
+  font-size: clamp(1rem, 1.8vw, 1.45rem);
+  line-height: 1.16;
+}
+
+.scoreboard {
+  min-height: 76px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(84px, 1fr));
+  gap: 8px;
+  padding: 10px;
+}
+
+.scoreboard div {
+  display: grid;
+  align-content: center;
+  gap: 2px;
+  min-width: 0;
+}
+
+.scoreboard span {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.scoreboard strong {
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.hud-actions {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+}
+
+.hud-actions a,
+.hud-actions button,
+.mission-actions button {
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 8px 10px;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 760;
+}
+
+.hud-actions a:hover,
+.hud-actions button:hover,
+.mission-actions button:hover {
+  border-color: color-mix(in srgb, var(--blue) 60%, var(--line));
+}
+
+.play-layout {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(230px, 0.56fr) minmax(520px, 1.5fr) minmax(300px, 0.76fr);
+  gap: 12px;
+}
+
+.panel {
+  padding: 14px;
+  min-width: 0;
+}
+
+.panel h2 {
+  margin-top: 6px;
+  font-size: clamp(1.1rem, 1.7vw, 1.42rem);
+  line-height: 1.16;
+}
+
+.panel p,
+.panel li,
+.panel dd {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.how-to {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.how-to ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.keys {
+  display: grid;
+  gap: 8px;
+}
+
+.keys span,
+code {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--panel-2);
+  color: var(--text);
+  padding: 6px 8px;
+  font-size: 0.82rem;
+  font-weight: 760;
+}
+
+.world {
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--blue) 24%, var(--panel)), var(--panel) 58%),
+    var(--panel);
+}
+
+.skyline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.skyline span {
+  position: absolute;
+  width: 160px;
+  height: 54px;
+  border-radius: 8px;
+  background: color-mix(in srgb, #fff 38%, transparent);
+}
+
+.skyline span:nth-child(1) {
+  left: 8%;
+  top: 12%;
+}
+
+.skyline span:nth-child(2) {
+  left: 46%;
+  top: 8%;
+}
+
+.skyline span:nth-child(3) {
+  right: 7%;
+  top: 18%;
+}
+
+.track {
+  position: absolute;
+  inset: 18px 18px 24px;
+}
+
+.ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 28px;
+  height: 62px;
+  border: 1px solid color-mix(in srgb, var(--green) 52%, var(--line));
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(180deg, color-mix(in srgb, var(--green) 72%, #9ad66b), color-mix(in srgb, var(--green) 76%, #4f4327));
+  background-size: 42px 100%, auto;
+}
+
+.stage-node {
+  position: absolute;
+  bottom: 84px;
+  z-index: 2;
+  transform: translateX(-50%);
+  min-width: 88px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 8px;
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  box-shadow: 0 10px 22px rgba(20, 32, 40, 0.14);
+  transition: transform 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.stage-node:hover {
+  transform: translate(-50%, -4px);
+}
+
+.stage-node.done {
+  border-color: color-mix(in srgb, var(--green) 66%, var(--line));
+  background: color-mix(in srgb, var(--green) 16%, var(--panel));
+}
+
+.stage-node.active {
+  border-color: color-mix(in srgb, var(--amber) 72%, var(--line));
+  background: color-mix(in srgb, var(--amber) 16%, var(--panel));
+}
+
+.stage-node.locked {
+  opacity: 0.48;
+}
+
+.flag {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  background: var(--text);
+  color: var(--bg);
+  font-weight: 900;
+}
+
+.stage-node strong {
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.agent {
+  position: absolute;
+  z-index: 4;
+  bottom: 148px;
+  width: 48px;
+  height: 70px;
+  transform: translateX(-50%);
+  transition: left 0.34s ease;
+}
+
+.agent-head,
+.agent-body {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+}
+
+.agent-head {
+  top: 0;
+  width: 34px;
+  height: 34px;
+  border: 3px solid var(--text);
+  border-radius: 8px;
+  background: var(--amber);
+}
+
+.agent-head::before,
+.agent-head::after {
+  content: "";
+  position: absolute;
+  top: 11px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--text);
+}
+
+.agent-head::before {
+  left: 8px;
+}
+
+.agent-head::after {
+  right: 8px;
+}
+
+.agent-body {
+  bottom: 0;
+  width: 42px;
+  height: 38px;
+  border: 3px solid var(--text);
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+}
+
+.mission {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.mission dl {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+}
+
+.mission dl div {
+  border-top: 1px solid var(--line);
+  padding-top: 9px;
+}
+
+.mission dt {
+  color: var(--blue);
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.mission dd {
+  margin: 4px 0 0;
+}
+
+.mission-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.mission-actions .primary {
+  border-color: color-mix(in srgb, var(--green) 62%, var(--line));
+  background: var(--green);
+  color: #fff;
+}
+
+.bottom-dock {
+  display: grid;
+  grid-template-columns: 0.72fr 1fr;
+  gap: 12px;
+}
+
+.skill-card,
+.progress-card {
+  min-height: 112px;
+}
+
+.progress-card code {
+  display: inline-block;
+  margin-top: 2px;
+}
+
+@media (max-width: 1180px) {
+  .game-app {
+    grid-template-rows: auto auto auto;
+  }
+
+  .hud,
+  .play-layout,
+  .bottom-dock {
+    width: 100%;
+  }
+
+  .hud,
+  .play-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .world {
+    min-height: 390px;
+  }
+
+  .bottom-dock {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .game-app {
+    padding: 10px;
+  }
+
+  .hud-actions,
+  .scoreboard,
+  .mission-actions {
+    grid-template-columns: 1fr;
+    flex-wrap: wrap;
+  }
+
+  .scoreboard {
+    display: grid;
+  }
+
+  .hud-actions a,
+  .hud-actions button {
+    flex: 1 1 130px;
+  }
+
+  .world {
+    overflow-x: auto;
+  }
+
+  .track {
+    min-width: 980px;
+  }
+}

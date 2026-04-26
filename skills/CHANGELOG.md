@@ -1,5 +1,25 @@
 # Changelog - Skills
 
+## [4.4.0] - 2026-04-25
+
+### Changed
+
+- `front-ux-ui-design` evoluída para atuar como especialista criativa de frontend/UI/UX, cobrindo criação e melhoria de páginas, landing pages, dashboards, portfólios, SaaS pages, app screens, componentes e design systems.
+- Fluxo da skill passou a exigir entendimento explícito de produto, público, ação principal, conteúdo, stack e restrições antes de propor direção visual.
+- Plano visual obrigatório expandido para detalhar exatamente 3 propostas com links clicáveis, trade-offs, layout, hierarquia, paleta, tipografia, espaçamento, componentes e motion.
+- Referência `benchmark-sites.md` ampliada com matriz de benchmarks por tipo de interface e template obrigatório de proposta visual.
+- Checklist de imagem de referência ampliado com intenção de produto e riscos de adaptação.
+- Pacote documental `doc_skills/readme.md` e `doc_skills/skills-workflow-guide.html` criado/sincronizado para refletir a atualização da skill.
+
+## [4.3.0] - 2026-04-09
+
+### Changed
+
+- `api-doc-postman` atualizada para modo template bloqueado: toda documentação de API/Backend deve seguir exatamente o padrão do `docs-portal-cliente` (layout, UX/UI e funções), variando apenas identidade visual/institucional e endpoints do projeto atual.
+- `api-doc-postman` passou a exigir briefing mínimo com somente cores e informações do projeto, proibindo coleta manual desnecessária de detalhes técnicos de endpoint.
+- Referências da skill `api-doc-postman` foram expandidas com checklist de paridade funcional e template dedicado de identidade do projeto.
+- Pacote documental de skills (`doc_skills/readme.md` e `doc_skills/skills-workflow-guide.html`) sincronizado para refletir o novo padrão obrigatório da documentação de API.
+
 ## [4.2.0] - 2026-03-14
 
 ### Changed

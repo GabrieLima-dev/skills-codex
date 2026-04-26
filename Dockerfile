@@ -27,12 +27,18 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 # Copia configuração do Nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expõe porta 80
+# Script para configurar porta dinâmica
+RUN echo '#!/bin/sh' > /entrypoint.sh && \
+    echo 'sed -i "s/listen 80;/listen ${PORT:-80};/" /etc/nginx/conf.d/default.conf' >> /entrypoint.sh && \
+    echo 'exec nginx -g "daemon off;"' >> /entrypoint.sh && \
+    chmod +x /entrypoint.sh
+
+# Porta padrão
 EXPOSE 80
 
 # Healthcheck para o EasyPanel
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD wget --no-verbose --tries=1 --spider http://localhost/ || exit 1
 
-# Inicia Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Inicia Nginx com script de configuração de porta
+CMD ["/entrypoint.sh"]

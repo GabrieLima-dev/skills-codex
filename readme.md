@@ -11,6 +11,9 @@ O objetivo e mostrar, de forma clara e pratica, como cada skill funciona, quando
 - Docs: este `readme.md`.
 - Home/documentacao visual: `/home` servindo `skills-workflow-guide.html`.
 - App principal do jogo: `game.html`.
+- Layout da Home: wrapper amplo alinhado ao Game, com limite de 1500px e margem segura em telas menores.
+- Footer da Home: compacto e integrado ao fim do grid, sem alteracao no sidebar lateral.
+- Playground da Home: preview com altura estavel somente em telas maiores, preservando fluidez em mobile.
 
 O projeto agora possui uma experiencia de jogo lateral para ensinar o fluxo das Skills e salva progresso no cache local do navegador.
 
@@ -219,6 +222,9 @@ Retorno esperado:
 13. Recarregue a pagina e confirme que o progresso foi mantido.
 14. Use `Reiniciar` e confirme que o progresso volta ao inicio.
 15. Reduza a largura da janela e confirme que a interface continua legivel.
+16. Em desktop largo, confirme que a Home ocupa largura semelhante ao Game, sem voltar ao container estreito anterior.
+17. Role ate o fim da Home e confirme que o footer esta mais discreto, com menor espaco inferior e sem mudanca no sidebar.
+18. Em desktop, alterne as opcoes do Playground de decisao e confirme que o box de preview nao muda de altura.
 
 ### API
 

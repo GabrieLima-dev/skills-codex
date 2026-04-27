@@ -87,7 +87,7 @@
     }
 
     .shell {
-      width: min(1220px, calc(100vw - 32px));
+      width: min(1500px, calc(100vw - 28px));
       margin: 0 auto;
     }
 
@@ -96,7 +96,7 @@
       grid-template-columns: 88px minmax(0, 1fr);
       gap: 18px;
       min-height: 100vh;
-      padding: 16px 0 54px;
+      padding: 16px 0 28px;
     }
 
     .side-rail {
@@ -601,10 +601,11 @@
     }
 
     footer {
-      padding: 18px 0 0;
+      padding: 10px 0 0;
       border-top: 1px solid var(--line);
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.82rem;
+      line-height: 1.35;
     }
 
     .modal-backdrop {
@@ -707,6 +708,12 @@
       color: var(--text);
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       font-size: 0.82rem;
+    }
+
+    @media (min-width: 1061px) {
+      .flow-preview {
+        min-height: 236px;
+      }
     }
 
     @media (max-width: 1060px) {

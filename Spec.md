@@ -30,9 +30,15 @@ Por que:
 O que alterar:
 - Manter como pagina principal/apoio ja existente.
 - Adicionar link claro para abrir o jogo em Vue via `game.html`.
+- Ajustar o wrapper `.shell` para usar o mesmo limite horizontal amplo do Game, com ate 1500px no desktop e margem segura em viewports menores.
+- Compactar o `footer` e integra-lo visualmente ao final do grid, sem alterar `.side-rail`.
+- Definir altura minima para `.flow-preview` somente em telas maiores, suficiente para o cenario com mais linhas.
 
 Por que:
 - A pagina atual passa a ser a primeira experiencia do site, enquanto o jogo vira experiencia dedicada.
+- A Home deve ocupar a largura disponivel com a mesma regra visual aplicada na pagina do Game.
+- O final da Home precisa ficar menos pesado visualmente quando o usuario chega ao fim da rolagem.
+- O box do playground nao deve mudar de altura ao alternar entre cenarios no desktop.
 
 ### `package.json`
 
@@ -86,9 +92,15 @@ Por que:
 
 O que alterar:
 - Criar validacao automatica de dados do jogo e normalizacao do progresso.
+- Validar que a Home usa o limite horizontal amplo esperado no wrapper principal.
+- Validar que o footer compacto da Home esteja presente.
+- Validar que a altura estavel do playground foi configurada apenas para telas maiores.
 
 Por que:
 - Ter um teste rapido sem depender de navegador.
+- Evitar regressao para um container estreito na Home.
+- Evitar regressao para um footer alto demais no final da Home.
+- Evitar regressao de layout com box do playground pulando no desktop.
 
 ### `PRD.md`
 
@@ -145,6 +157,9 @@ Depois:
 16. Usar `Reiniciar` e confirmar limpeza do progresso.
 17. Verificar responsividade por estrutura CSS.
 18. Procurar termos legados nos arquivos alterados.
+19. Validar que `.shell` da Home usa largura maxima de 1500px com margem segura.
+20. Validar que o footer da Home esta compacto e que o sidebar nao foi alterado.
+21. Validar que o box do playground fica estavel em telas maiores e continua fluido nos breakpoints menores.
 
 ## Criterios de Pronto
 
@@ -159,6 +174,9 @@ Depois:
 9. Nao existem referencias ativas a outro projeto nos arquivos alterados.
 10. Validacoes locais planejadas foram executadas ou justificadas.
 11. A entrega inclui roteiro `como testar`.
+12. A Home tem wrapper alinhado ao limite horizontal do Game.
+13. O footer da Home fica mais compacto sem mudanca no sidebar lateral.
+14. O box de preview do playground tem altura estavel no desktop sem impor altura fixa no mobile.
 
 ## Estrategia TDD/Validacao
 

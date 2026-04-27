@@ -18,12 +18,16 @@ Esta especificacao implementa o `PRD.md` da documentacao interativa do projeto `
 
 O que alterar:
 - Reposicionar o projeto como `Skills`.
-- Explicar objetivo, estrutura, stack atual e evolucao futura.
-- Listar skills por bloco operacional.
-- Documentar gates, caminhos de uso e como testar.
+- Explicar objetivo, stack atual, experiencia interativa e como rodar.
+- Valorizar o estudo de Skills, agentes e vibe coding.
+- Linkar a Home interativa, o jogo e o catalogo de skills.
+- Reduzir detalhes internos de governanca, deploy e operacao que nao agregam a um README publico.
+- Revisar acentuacao, pontuacao e concordancia em portugues do Brasil.
 
 Por que:
 - O README passa a ser a documentacao textual principal do projeto.
+- O repositorio publico precisa comunicar valor tecnico e aprendizado sem expor ruido operacional.
+- O texto publico precisa ter leitura profissional em portugues do Brasil.
 
 ### `skills-workflow-guide.html`
 
@@ -160,6 +164,8 @@ Depois:
 19. Validar que `.shell` da Home usa largura maxima de 1500px com margem segura.
 20. Validar que o footer da Home esta compacto e que o sidebar nao foi alterado.
 21. Validar que o box do playground fica estavel em telas maiores e continua fluido nos breakpoints menores.
+22. Validar que o README publico destaca proposta, stack, execucao local, estudo das skills e ausencia de backend.
+23. Validar que o README publico usa pontuacao, acentuacao e concordancia adequadas em portugues do Brasil.
 
 ## Criterios de Pronto
 
@@ -177,6 +183,8 @@ Depois:
 12. A Home tem wrapper alinhado ao limite horizontal do Game.
 13. O footer da Home fica mais compacto sem mudanca no sidebar lateral.
 14. O box de preview do playground tem altura estavel no desktop sem impor altura fixa no mobile.
+15. O README esta adequado para GitHub publico, com conteudo essencial e sem comandos privados de publicacao.
+16. O README esta revisado em portugues do Brasil sem alterar o escopo tecnico descrito.
 
 ## Estrategia TDD/Validacao
 

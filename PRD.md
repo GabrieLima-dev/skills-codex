@@ -105,6 +105,8 @@ Transformar a documentacao do projeto `Skills` em uma experiencia didatica e int
 12. A Home deve usar o mesmo limite horizontal amplo do Game, permitindo largura de ate 1500px no desktop sem perder a margem segura em viewports menores.
 13. O footer da Home deve ficar compacto e integrado ao fim do grid, sem alterar o comportamento visual do sidebar lateral.
 14. Em telas maiores, o preview do playground deve manter altura estavel para comportar o maior cenario sem alterar o tamanho do box ao trocar opcoes.
+15. O README publico deve apresentar o projeto de forma enxuta para GitHub, destacando estudo de Skills, agentes e vibe coding sem expor detalhes operacionais desnecessarios.
+16. O README publico deve usar portugues do Brasil com acentuacao, pontuacao e concordancia adequadas.
 
 ## Riscos e Duvidas
 
@@ -114,3 +116,5 @@ Transformar a documentacao do projeto `Skills` em uma experiencia didatica e int
 4. A ampliacao da Home pode expor problemas de densidade visual em telas largas, por isso a validacao deve cobrir build e checagem automatica do limite horizontal.
 5. A reducao do footer deve preservar legibilidade e nao mexer no rail lateral para evitar regressao no comportamento sticky.
 6. A altura estabilizada do playground deve ser aplicada somente em telas maiores para evitar excesso de espaco em mobile.
+7. O README publico deve evitar informacoes sensiveis, comandos de publicacao privados e excesso de governanca interna.
+8. A revisao linguistica deve preservar a clareza publica do README sem alterar escopo tecnico.

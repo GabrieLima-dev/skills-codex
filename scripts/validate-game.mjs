@@ -76,6 +76,18 @@ if (!guideSource.includes('data-scenario')) {
   failures.push('Home precisa manter playground interativo por cenario.');
 }
 
+if (!guideSource.includes('width: min(1500px, calc(100vw - 28px));')) {
+  failures.push('Home precisa usar limite horizontal amplo alinhado ao Game.');
+}
+
+if (!guideSource.includes('padding: 10px 0 0;') || !guideSource.includes('font-size: 0.82rem;') || !guideSource.includes('padding: 16px 0 28px;')) {
+  failures.push('Footer da Home precisa ficar compacto e integrado ao grid.');
+}
+
+if (!guideSource.includes('@media (min-width: 1061px)') || !guideSource.includes('.flow-preview {') || !guideSource.includes('min-height: 236px;')) {
+  failures.push('Preview do playground precisa ter altura estavel somente em telas maiores.');
+}
+
 if (!guideSource.includes('vlibras-plugin.js') || !gameSource.includes('vlibras-plugin.js') || !indexSource.includes('vlibras-plugin.js')) {
   failures.push('VLibras precisa estar integrado nas entradas HTML do projeto.');
 }

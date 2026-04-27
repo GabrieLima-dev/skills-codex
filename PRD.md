@@ -102,9 +102,15 @@ Transformar a documentacao do projeto `Skills` em uma experiencia didatica e int
 9. O build de producao inclui `skills-workflow-guide.html` e `game.html`, e o Nginx publica `/home` sem 404.
 10. Busca textual por termos legados de projeto nao encontra referencias ativas nos arquivos alterados.
 11. `npm test` valida dados basicos do jogo, normalizacao do progresso, rota `/home`, tema compartilhado, modais e VLibras.
+12. A Home deve usar o mesmo limite horizontal amplo do Game, permitindo largura de ate 1500px no desktop sem perder a margem segura em viewports menores.
+13. O footer da Home deve ficar compacto e integrado ao fim do grid, sem alterar o comportamento visual do sidebar lateral.
+14. Em telas maiores, o preview do playground deve manter altura estavel para comportar o maior cenario sem alterar o tamanho do box ao trocar opcoes.
 
 ## Riscos e Duvidas
 
 1. A futura evolucao para 3D ou backend completo nao sera implementada nesta entrega.
 2. Como nao ha backend, interacoes e progresso serao locais no navegador.
 3. Alteracoes em contratos das skills ficam fora do escopo para evitar mudanca operacional nao solicitada.
+4. A ampliacao da Home pode expor problemas de densidade visual em telas largas, por isso a validacao deve cobrir build e checagem automatica do limite horizontal.
+5. A reducao do footer deve preservar legibilidade e nao mexer no rail lateral para evitar regressao no comportamento sticky.
+6. A altura estabilizada do playground deve ser aplicada somente em telas maiores para evitar excesso de espaco em mobile.
